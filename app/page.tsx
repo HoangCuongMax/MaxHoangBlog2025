@@ -18,7 +18,7 @@ export default async function Home() {
         <div className="mt-4 sm:mt-6 md:mt-8">
           <ProfileLinktree />
         </div>
-        <PageContainer noBoxStyling={true}>
+        <PageContainer noBoxStyling={true} maxWidthClass="max-w-4xl">
           <NotionPage recordMap={recordMap} />
           <NotionLinkInterceptor />
         </PageContainer>
