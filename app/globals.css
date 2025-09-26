@@ -11,7 +11,16 @@ body {
 
 /* Custom styles for Notion content */
 .notion-page-container {
-  @apply w-full max-w-none flex flex-row justify-start;
+  @apply w-full max-w-none;
+}
+
+/* Book layout (AI Guide) */
+.book-layout .content-article {
+  max-width: 800px;
+}
+.book-layout .toc a.active {
+  color: #1e3a8a;
+  text-decoration: underline;
 }
 
 /* Ensure content body matches cover photo width */
