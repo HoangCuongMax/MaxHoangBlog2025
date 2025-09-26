@@ -31,10 +31,7 @@ function extractHeadings(recordMap: any): Array<{ id: string; text: string; leve
 
 export default async function AiGuidePage() {
   const pageId = PAGE_IDS.aiGuide
-  const [recordMap, meta] = await Promise.all([
-    getNotionPage(pageId),
-    getPageByKeyWithMetadata('home').then(() => null).catch(() => null) // noop to keep similar import pattern
-  ])
+  const recordMap = await getNotionPage(pageId)
 
   const headings = extractHeadings(recordMap)
 
