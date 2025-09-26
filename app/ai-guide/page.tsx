@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import PageContainer from '../../components/page-container'
-import { getNotionPage, getPageByKeyWithMetadata, PAGE_IDS } from '../../lib/notion-api'
+import { getNotionPage, PAGE_IDS } from '../../lib/notion-api'
 
 const NotionPage = dynamic(() => import('../../components/notion-page'), { ssr: false })
 
