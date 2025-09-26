@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import Navigation from '../components/navigation'
-import Footer from '../components/Footer'
+import Footer from '../components/footer'
 import ContactPopup from '../components/contact-popup'
 
 // Force dynamic rendering for the entire application
