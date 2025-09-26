@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import PageContainer from '../../components/page-container'
 import { getNotionPage, PAGE_IDS } from '../../lib/notion-api'
+import AiGuideToc from '../../components/ai-guide-toc'
 
 const NotionPage = dynamicImport(() => import('../../components/notion-page'), { ssr: false })
 
@@ -45,45 +46,20 @@ export default async function AiGuidePage() {
   })()
 
   return (
-    <PageContainer noBoxStyling={true} maxWidthClass="max-w-6xl">
-      <div className="mb-6">
-        <nav className="text-sm text-gray-500" aria-label="Breadcrumb">
-          <ol className="flex items-center space-x-2">
-            <li>
-              <Link href="/" className="hover:text-blue-600">Home</Link>
-            </li>
-            <li>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </li>
-            <li className="text-gray-900 font-medium truncate">{pageTitle}</li>
-          </ol>
-        </nav>
-      </div>
+    <PageContainer noBoxStyling={true} maxWidthClass="max-w-none">
+      <div className="book-layout">
+        <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-6">
+          <aside className="md:sticky md:top-24 h-max md:self-start">
+            <AiGuideToc headings={headings} />
+          </aside>
 
-      <div className="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6">
-        <aside className="md:sticky md:top-24 h-max md:self-start">
-          <div className="border border-gray-200 rounded-xl bg-white shadow-sm p-3">
-            <div className="px-2 py-2 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">Contents</div>
-            <nav className="mt-2">
-              <ul className="space-y-1">
-                {headings.map(h => (
-                  <li key={h.id} className={h.level === 1 ? 'pl-1' : h.level === 2 ? 'pl-4' : 'pl-7'}>
-                    <a href={`#${h.id}`} className="block py-1 text-sm text-gray-700 hover:text-blue-700 underline-offset-2 hover:underline">
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </aside>
-
-        <article className="min-w-0">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
-          <div className="notion-content w-full">
-            <NotionPage recordMap={recordMap} />
-          </div>
-        </article>
+          <article className="min-w-0 content-article">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
+            <div className="notion-content w-full">
+              <NotionPage recordMap={recordMap} />
+            </div>
+          </article>
+        </div>
       </div>
     </PageContainer>
   )
