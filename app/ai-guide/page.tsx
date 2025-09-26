@@ -48,17 +48,20 @@ export default async function AiGuidePage() {
   return (
     <PageContainer noBoxStyling={true} maxWidthClass="max-w-none">
       <div className="book-layout">
-        <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-6">
-          <aside className="md:sticky md:top-24 h-max md:self-start">
+        <div className="grid grid-cols-1 md:grid-cols-[300px,1fr,300px] gap-6">
+          <aside className="md:sticky md:top-24 h-max md:self-start col-start-1">
             <AiGuideToc headings={headings} />
           </aside>
 
-          <article className="min-w-0 content-article">
+          <article className="min-w-0 content-article col-start-2 justify-self-center mx-auto">
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
             <div className="notion-content w-full">
               <NotionPage recordMap={recordMap} />
             </div>
           </article>
+
+          {/* Right spacer to keep main content centered on the screen */}
+          <div className="hidden md:block col-start-3" />
         </div>
       </div>
     </PageContainer>
