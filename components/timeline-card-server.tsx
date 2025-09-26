@@ -1,5 +1,6 @@
 import { TimelineItem } from '../lib/notion-api'
-import NotionPage from './notion-page'
+import dynamic from 'next/dynamic'
+const NotionPage = dynamic(() => import('./notion-page'), { ssr: false })
 import Link from 'next/link'
 import TimelineCardSlider from './timeline-card-slider'
 
