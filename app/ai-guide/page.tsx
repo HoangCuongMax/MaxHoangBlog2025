@@ -1,10 +1,10 @@
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import PageContainer from '../../components/page-container'
 import { getNotionPage, PAGE_IDS } from '../../lib/notion-api'
 
-const NotionPage = dynamic(() => import('../../components/notion-page'), { ssr: false })
+const NotionPage = dynamicImport(() => import('../../components/notion-page'), { ssr: false })
 
 export const dynamic = 'force-dynamic'
 
