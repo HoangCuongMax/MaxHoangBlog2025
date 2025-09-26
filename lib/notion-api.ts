@@ -14,7 +14,8 @@ const notionUnofficial = new NotionAPI()
 export const PAGE_IDS = {
   home: '23f792d80ba380189a58c946bdcad944',
   projects: '23f792d80ba380a2a8ddd56aee32216a',
-  contact: '237792d80ba38002b795d261ca17b305'
+  contact: '237792d80ba38002b795d261ca17b305',
+  aiGuide: '27a792d80ba38094ae60c555dd2f4c1e'
 }
 
 // Database IDs (cleaned format without dashes)
