@@ -8,6 +8,7 @@ const siteNav = [
   { href: '/blog', label: 'Blog' },
   { href: '/timeline', label: 'Timeline' },
   { href: '/study-journal', label: 'AI Journal' },
+  { href: '/ai-guide', label: 'AI Guide' },
   { href: '/projects', label: 'Projects' },
   { href: '/contact', label: 'Contact' },
 ]
