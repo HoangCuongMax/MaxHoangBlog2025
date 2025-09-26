@@ -1,6 +1,7 @@
 import { getTimelineItems, getTimelineItemContent } from '../../../lib/notion-api'
+import dynamic from 'next/dynamic'
 import PageContainer from '../../../components/page-container'
-import NotionPage from '../../../components/notion-page'
+const NotionPage = dynamic(() => import('../../../components/notion-page'), { ssr: false })
 import Link from 'next/link'
 import { generateMetaTags } from '../../../lib/seo-utils'
 import ErrorFallback from '../../../components/error-fallback'
