@@ -11,7 +11,7 @@ body {
 
 /* Custom styles for Notion content */
 .notion-page-container {
-  @apply w-full max-w-none;
+  @apply w-full max-w-none flex flex-row justify-start;
 }
 
 /* Ensure content body matches cover photo width */
@@ -60,6 +60,7 @@ body {
   @apply text-gray-700 leading-relaxed;
   font-size: 18px !important;
   line-height: 1.8 !important;
+  padding: 3px 0 3px 2px !important;
 }
 
 .notion-h1 {
