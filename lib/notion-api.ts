@@ -3,11 +3,12 @@ import { NotionAPI } from 'notion-client'
 import { generateSlug } from './seo-utils'
 
 // Initialize the official Notion API client with your token
-if (!process.env.NOTION_TOKEN) {
-  console.warn('NOTION_TOKEN is not set. Notion API requests will fail.')
+const hasOfficialToken = Boolean(process.env.NOTION_TOKEN && process.env.NOTION_TOKEN.startsWith('secret_'))
+if (!hasOfficialToken) {
+  console.warn('NOTION_TOKEN missing or not an integration token (expected to start with "secret_"). Official Notion API calls will be skipped.')
 }
 const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
+  auth: hasOfficialToken ? process.env.NOTION_TOKEN : undefined,
 })
 
 // Keep the unofficial client for page rendering only (optionally with auth for private pages)
@@ -114,6 +115,7 @@ export interface Event {
 // Function to get blog posts using official Notion API
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.blog
 
     const response = await notion.databases.query({
@@ -234,6 +236,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 // Function to get timeline items using official Notion API
 export async function getTimelineItems(): Promise<TimelineItem[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.timeline
 
     let response
@@ -406,6 +409,7 @@ export async function getFirstImageUrlFromPage(pageId: string): Promise<string |
 // Function to get study journal posts using official Notion API
 export async function getStudyJournalPosts(): Promise<StudyJournalPost[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.studyJournal
 
     const response = await notion.databases.query({
@@ -548,6 +552,7 @@ export interface PageMetadata {
 // Function to get page metadata (title, icon, cover) using official API
 export async function getPageMetadata(pageId: string): Promise<PageMetadata | null> {
   try {
+    if (!hasOfficialToken) return null
     const response = await notion.pages.retrieve({ page_id: pageId })
 
     if (!('properties' in response)) {
@@ -616,6 +621,7 @@ export async function getPageByKeyWithMetadata(key: keyof typeof PAGE_IDS) {
 // Function to get events using official Notion API
 export async function getEvents(): Promise<Event[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.events
 
     const response = await notion.databases.query({
