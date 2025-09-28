@@ -12,14 +12,24 @@ export default function AuthMenu() {
   useEffect(() => {
     let mounted = true
     const load = async () => {
-      const { data } = await supabase.auth.getUser()
-      if (mounted) setUser(data.user ? { id: data.user.id, email: data.user.email } : null)
+      try {
+        const { data } = await supabase.auth.getUser()
+        if (mounted) setUser(data.user ? { id: data.user.id, email: data.user.email } : null)
+      } catch (e) {
+        console.error('Error fetching supabase user:', e)
+        if (mounted) setUser(null)
+      }
     }
     load()
     const { data: sub } = supabase.auth.onAuthStateChange((_evt, session) => {
-      setUser(session?.user ? { id: session.user.id, email: session.user.email } : null)
+      try {
+        setUser(session?.user ? { id: session.user.id, email: session.user.email } : null)
+      } catch (e) {
+        console.error('Auth state change error:', e)
+        setUser(null)
+      }
     })
-    return () => { mounted = false; sub.subscription.unsubscribe() }
+    return () => { mounted = false; try { sub.subscription.unsubscribe() } catch(e){} }
   }, [])
 
   const signOut = async () => { await supabase.auth.signOut() }
