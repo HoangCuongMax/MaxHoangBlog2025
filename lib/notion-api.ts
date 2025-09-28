@@ -234,52 +234,58 @@ export async function getTimelineItems(): Promise<TimelineItem[]> {
   try {
     const databaseId = DATABASE_IDS.timeline
 
-    const response = await notion.databases.query({
-      database_id: databaseId,
-      sorts: [
-        {
-          property: 'Date',
-          direction: 'descending'
-        }
-      ]
-    })
+    let response
+    try {
+      response = await notion.databases.query({
+        database_id: databaseId,
+        sorts: [
+          {
+            property: 'Date',
+            direction: 'descending'
+          }
+        ]
+      })
+    } catch (e) {
+      // Fallback if 'Date' property doesn't exist or sort fails
+      response = await notion.databases.query({ database_id: databaseId })
+    }
 
     const items: TimelineItem[] = []
 
     for (const page of response.results) {
       if ('properties' in page) {
-        // Extract title
+        // Extract title (find any title prop)
         let title = 'Untitled'
-        const titleProp = page.properties.Title
-        if (titleProp && titleProp.type === 'title' && titleProp.title.length > 0) {
+        const titleProp = Object.values(page.properties).find((p: any) => p?.type === 'title') as any
+        if (titleProp?.title?.length) {
           title = titleProp.title.map((t: any) => t.plain_text).join('')
         }
 
-        // Extract description
+        // Extract description (first rich_text)
         let description = ''
-        const descProp = page.properties.Description
-        if (descProp && descProp.type === 'rich_text' && descProp.rich_text.length > 0) {
+        const descProp = Object.values(page.properties).find((p: any) => p?.type === 'rich_text') as any
+        if (descProp?.rich_text?.length) {
           description = descProp.rich_text.map((t: any) => t.plain_text).join('')
         }
 
-        // Extract date
+        // Extract date (first date prop)
         let date = ''
-        const dateProp = page.properties.Date
-        if (dateProp && dateProp.type === 'date' && dateProp.date) {
+        const dateProp = Object.values(page.properties).find((p: any) => p?.type === 'date' && p?.date) as any
+        if (dateProp?.date) {
           date = dateProp.date.start
         }
 
-        // Extract category
+        // Extract category (first select)
         let category = ''
-        const categoryProp = page.properties.Category
-        if (categoryProp && categoryProp.type === 'select' && categoryProp.select && 'name' in categoryProp.select) {
+        const categoryProp = Object.values(page.properties).find((p: any) => p?.type === 'select' && p?.select) as any
+        if (categoryProp?.select?.name) {
           category = categoryProp.select.name
         }
 
-        // Extract tags
+        // Extract tags (first multi_select)
         let tags: string[] = []
-        const tagsProp = page.properties.Tags
-        if (tagsProp && tagsProp.type === 'multi_select' && Array.isArray(tagsProp.multi_select)) {
+        const tagsProp = Object.values(page.properties).find((p: any) => p?.type === 'multi_select' && Array.isArray(p?.multi_select)) as any
+        if (tagsProp?.multi_select) {
           tags = tagsProp.multi_select.map((tag: any) => tag.name)
         }
 
