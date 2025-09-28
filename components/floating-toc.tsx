@@ -9,7 +9,7 @@ interface TOCItem {
   level: number
 }
 
-export default function FloatingTOC({ leftOffsetClass = 'left-8' }: { leftOffsetClass?: string }) {
+export default function FloatingTOC({ leftOffsetClass = 'left-8', topPx = 96 }: { leftOffsetClass?: string; topPx?: number }) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
   const [showSuggestion, setShowSuggestion] = useState<boolean>(true)
@@ -176,75 +176,23 @@ export default function FloatingTOC({ leftOffsetClass = 'left-8' }: { leftOffset
   if (tocItems.length === 0) return null
 
   return (
-    <div className={`hidden xl:block fixed ${leftOffsetClass} top-32 z-10 transition-all duration-300 ${
-      isMinimized ? `w-12 ${showSuggestion ? 'animate-pulse' : ''}` : 'w-72'
-    }`}>
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-        {/* Header with minimize/expand button */}
-        <div className="flex items-center justify-between p-3 border-b border-gray-100 bg-gray-50">
-          {!isMinimized && (
-            <h3 className="text-xs font-medium text-gray-900 uppercase tracking-wide">
-              Contents
-            </h3>
-          )}
-          <button
-            onClick={() => {
-              setIsMinimized(!isMinimized)
-              setShowSuggestion(false) // Stop animation when user interacts
-            }}
-            className={`p-1 hover:bg-gray-200 rounded text-gray-500 hover:text-gray-700 transition-all duration-300 ${
-              isMinimized && showSuggestion ? 'animate-bounce' : ''
-            }`}
-            title={isMinimized ? 'Expand table of contents' : 'Minimize table of contents'}
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
+    <div className={`hidden xl:block fixed ${leftOffsetClass} z-10`} style={{ top: topPx, bottom: 0 }}>
+      <div className="h-full overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-3 sm:p-4 w-[300px]">
+        <div className="text-[11px] uppercase tracking-wide text-gray-500 font-semibold mb-2">Contents</div>
+        <nav className="space-y-0 divide-y divide-gray-100">
+          {tocItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleClick(item.id)}
+              className={`block w-full text-left text-[13px] leading-snug py-2 px-2 hover:bg-gray-50 transition-colors ${
+                activeId === item.id ? 'bg-blue-50 text-blue-700 border-l-2 border-blue-600' : 'text-gray-700 border-l-2 border-transparent'
+              }`}
+              style={{ paddingLeft: `${Math.min(item.level * 12, 24) + 6}px` }}
             >
-              {isMinimized ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* TOC Content */}
-        {!isMinimized && (
-          <div className="p-3 max-h-80 overflow-y-auto">
-            <nav className="space-y-1.5">
-              {tocItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleClick(item.id)}
-                  className={`block w-full text-left text-xs transition-colors hover:text-blue-600 py-1 px-1 rounded ${
-                    activeId === item.id
-                      ? 'text-blue-600 font-medium bg-blue-50'
-                      : 'text-gray-600 hover:bg-gray-50'
-                  }`}
-                  style={{
-                    paddingLeft: `${Math.min(item.level * 12, 24) + 4}px`,
-                  }}
-                >
-                  {item.text}
-                </button>
-              ))}
-            </nav>
-          </div>
-        )}
-
-        {/* Minimized indicator with animation */}
-        {isMinimized && (
-          <div className="p-2 flex justify-center">
-            <div className={`w-2 h-2 bg-blue-500 rounded-full ${
-              showSuggestion ? 'animate-ping' : ''
-            }`}></div>
-          </div>
-        )}
+              {item.text}
+            </button>
+          ))}
+        </nav>
       </div>
     </div>
   )
