@@ -63,7 +63,7 @@ export default function Navigation() {
   const navColor = 'text-zinc-700'
 
   return (
-    <nav className={`fixed left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`} aria-label="Main navigation" style={{ top: '0' }}>
+    <nav className={`fixed left-0 right-0 z-[10000] transition-transform duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'}`} aria-label="Main navigation" style={{ top: '0' }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="pt-2 sm:pt-3 relative">
           {/* Pill container - bigger x2 */}
