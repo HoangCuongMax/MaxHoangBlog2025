@@ -5,6 +5,9 @@ import ErrorFallback from '../../components/error-fallback'
 import NotionLinkInterceptor from '../../components/notion-link-interceptor'
 import PageCoverHeader from '../../components/page-cover-header'
 import { Metadata } from 'next'
+import { TOCProvider } from '../../components/toc-context'
+import FloatingTOC from '../../components/floating-toc'
+import ResponsiveContentWrapper from '../../components/responsive-content-wrapper'
 
 export default async function Projects() {
   try {
@@ -15,8 +18,15 @@ export default async function Projects() {
         <PageCoverHeader metadata={metadata} />
 
         <PageContainer noBoxStyling={true}>
-          <NotionPage recordMap={recordMap} />
-          <NotionLinkInterceptor />
+          <TOCProvider>
+            <FloatingTOC />
+            <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
+              <ResponsiveContentWrapper>
+                <NotionPage recordMap={recordMap} />
+                <NotionLinkInterceptor />
+              </ResponsiveContentWrapper>
+            </div>
+          </TOCProvider>
         </PageContainer>
       </>
     )
