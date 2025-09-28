@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import { BlogPost } from '../lib/notion-api'
+import type { BlogPost } from '../lib/notion-api'
 
 interface BlogSidebarProps {
   posts: BlogPost[]
