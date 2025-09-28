@@ -9,7 +9,7 @@ interface TOCItem {
   level: number
 }
 
-export default function FloatingTOC() {
+export default function FloatingTOC({ leftOffsetClass = 'left-8' }: { leftOffsetClass?: string }) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
   const [showSuggestion, setShowSuggestion] = useState<boolean>(true)
@@ -176,7 +176,7 @@ export default function FloatingTOC() {
   if (tocItems.length === 0) return null
 
   return (
-    <div className={`hidden xl:block fixed left-8 top-32 z-10 transition-all duration-300 ${
+    <div className={`hidden xl:block fixed ${leftOffsetClass} top-32 z-10 transition-all duration-300 ${
       isMinimized ? `w-12 ${showSuggestion ? 'animate-pulse' : ''}` : 'w-72'
     }`}>
       <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
