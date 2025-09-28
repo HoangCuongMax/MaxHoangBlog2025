@@ -215,7 +215,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           {selected && (
             showTOC ? (
               <TOCProvider>
-                <FloatingTOC leftOffsetClass="left-[360px]" />
+                <FloatingTOC leftOffsetClass="left-[360px]" topPx={navVisible ? 96 : 0} />
                 <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
                   <ResponsiveContentWrapper>
                     <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
