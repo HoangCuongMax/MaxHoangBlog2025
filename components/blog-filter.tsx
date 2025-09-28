@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect, useRef } from 'react'
-import { BlogPost } from '../lib/notion-api'
+import type { BlogPost } from '../lib/notion-api'
 import BlogCard from './blog-card'
 
 interface BlogFilterProps {
