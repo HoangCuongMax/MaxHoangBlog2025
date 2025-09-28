@@ -192,7 +192,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                 <div className="min-w-0">
                   <div className="font-semibold text-sm text-gray-900 truncate">{item.title}</div>
                   {item.description && (
-                    <p className="text-xs text-gray-600 line-clamp-1">{item.description}</p>
+                    <p className="text-xs text-gray-600 line-clamp-1 mr-[-2px]">{item.description}</p>
                   )}
                   {item.date && (
                     <div className="text-[11px] text-gray-500 mt-1">{formatDate(item.date)}</div>
@@ -250,7 +250,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <div className="min-w-0">
                     <div className="font-semibold text-sm text-gray-900 truncate">{item.title}</div>
                     {item.description && (
-                      <p className="text-xs text-gray-600 line-clamp-1">{item.description}</p>
+                      <p className="text-xs text-gray-600 line-clamp-1 mr-[-2px]">{item.description}</p>
                     )}
                     {item.date && (
                       <div className="text-[11px] text-gray-500 mt-1">{formatDate(item.date)}</div>
@@ -268,7 +268,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
             showTOC ? (
               <TOCProvider>
                 <FloatingTOC leftOffsetClass="left-[320px]" topPx={navVisible ? 96 : 0} />
-                <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
+                <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 transition-all duration-300 ease-in-out">
                   <ResponsiveContentWrapper>
                     <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
                       {/* Cover or gallery (optional) */}
