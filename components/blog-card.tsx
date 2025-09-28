@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BlogPost } from '../lib/notion-api'
+import type { BlogPost } from '../lib/notion-api'
 
 interface BlogCardProps {
   post: BlogPost
