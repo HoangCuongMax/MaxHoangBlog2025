@@ -1,5 +1,4 @@
 import { Client } from '@notionhq/client'
-import { Client } from '@notionhq/client'
 import { NotionAPI } from 'notion-client'
 import { generateSlug } from './seo-utils'
 
