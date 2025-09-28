@@ -18,10 +18,16 @@ export default function LoginPage() {
     e.preventDefault()
     setError(null)
     setLoading(true)
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    setLoading(false)
-    if (error) { setError(error.message); return }
-    router.push('/account/profile')
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      setLoading(false)
+      if (error) { setError(error.message); return }
+      router.push('/account/profile')
+    } catch (e: any) {
+      setLoading(false)
+      console.error('Login error:', e)
+      setError(e?.message || 'Login failed')
+    }
   }
 
   return (
