@@ -116,27 +116,27 @@ export default function TimelineTwoPaneClient({ itemsWithContent }: TimelineTwoP
             </div>
           </div>
 
-          <nav className="space-y-1">
+          <nav className="space-y-0 divide-y divide-gray-100">
             {items.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setSelectedId(item.id)}
-                className={`w-full text-left rounded-lg border transition-colors p-2.5 flex gap-3 items-start hover:border-gray-300 ${
-                  (selected?.id === item.id) ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'
+                className={`w-full text-left transition-colors p-2 flex gap-2 items-start hover:bg-gray-50 ${
+                  (selected?.id === item.id) ? 'bg-blue-50/60 border-l-2 border-blue-500' : 'border-l-2 border-transparent'
                 }`}
                 aria-current={selected?.id === item.id ? 'page' : undefined}
               >
                 {/* Cover thumbnail */}
                 {item.coverImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={item.coverImage} alt={item.title} className="w-14 h-14 object-cover rounded-md flex-shrink-0" />
+                  <img src={item.coverImage} alt={item.title} className="w-12 h-12 object-cover rounded-md flex-shrink-0" />
                 ) : (
-                  <div className="w-14 h-14 rounded-md bg-gray-100 flex items-center justify-center text-gray-400 flex-shrink-0">📄</div>
+                  <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center text-gray-400 flex-shrink-0">📄</div>
                 )}
                 <div className="min-w-0">
                   <div className="font-semibold text-sm text-gray-900 truncate">{item.title}</div>
                   {item.description && (
-                    <p className="text-xs text-gray-600 line-clamp-2">{item.description}</p>
+                    <p className="text-xs text-gray-600 line-clamp-1">{item.description}</p>
                   )}
                   {item.date && (
                     <div className="text-[11px] text-gray-500 mt-1">{formatDate(item.date)}</div>
