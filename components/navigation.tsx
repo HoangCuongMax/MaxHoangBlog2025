@@ -138,7 +138,10 @@ export default function Navigation() {
                       </li>
                     ))}
                   </ul>
-                  <div className="px-4 pb-4">
+                  <div className="px-4 pb-4 space-y-2">
+                    <Link href="/account/auth" onClick={() => setMobileOpen(false)} className="w-full inline-flex items-center justify-center h-11 px-5 rounded-full border border-gray-200 text-zinc-700 hover:bg-gray-50">
+                      Sign in / up
+                    </Link>
                     <a
                       href="https://www.linkedin.com/in/maxhoangau/"
                       target="_blank"
