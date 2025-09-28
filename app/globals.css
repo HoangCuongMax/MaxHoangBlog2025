@@ -717,6 +717,17 @@ main {
   }
 }
 
+/* When using the book-layout with our own sidebar, collapse Notion's left column and spacer */
+.book-layout .notion-row > .notion-column:first-child {
+  display: none !important;
+}
+.book-layout .notion-row > .notion-spacer {
+  display: none !important;
+}
+.book-layout .notion-row > .notion-column:last-child {
+  width: 100% !important;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .notion-table-of-contents {
