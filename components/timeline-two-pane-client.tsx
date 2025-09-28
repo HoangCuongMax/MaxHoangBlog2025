@@ -88,6 +88,15 @@ export default function TimelineTwoPaneClient({ itemsWithContent }: TimelineTwoP
     }
   }
 
+  if (!itemsWithContent || itemsWithContent.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">No timeline items yet</h2>
+        <p className="text-gray-600">Check back soon for new updates!</p>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full">
       {/* Page header */}
