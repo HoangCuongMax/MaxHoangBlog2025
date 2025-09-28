@@ -1,6 +1,6 @@
 import { getTimelineItems, getTimelineItemContent } from '../../lib/notion-api'
 import PageContainer from '../../components/page-container'
-import TimelineClient from '../../components/timeline-client'
+import TimelineTwoPaneClient from '../../components/timeline-two-pane-client'
 import ErrorFallback from '../../components/error-fallback'
 
 export default async function Timeline() {
