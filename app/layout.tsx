@@ -3,6 +3,7 @@ import './globals.css'
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
 import ContactPopup from '../components/contact-popup'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // Force dynamic rendering for the entire application
 export const dynamic = 'force-dynamic'
