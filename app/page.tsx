@@ -1,9 +1,9 @@
 import { getPageByKeyWithMetadata } from '../lib/notion-api'
-import dynamic from 'next/dynamic'
-const NotionPage = dynamic(() => import('../components/notion-page'), { ssr: false })
+import dynamicImport from 'next/dynamic'
+const NotionPage = dynamicImport(() => import('../components/notion-page'), { ssr: false })
 import PageContainer from '../components/page-container'
 import ErrorFallback from '../components/error-fallback'
-const NotionLinkInterceptor = dynamic(() => import('../components/notion-link-interceptor'), { ssr: false })
+const NotionLinkInterceptor = dynamicImport(() => import('../components/notion-link-interceptor'), { ssr: false })
 import PageCoverHeader from '../components/page-cover-header'
 import ProfileLinktree from '../components/profile-linktree'
 import { Metadata } from 'next'
