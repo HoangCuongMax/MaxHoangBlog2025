@@ -32,10 +32,7 @@ export default function AuthMenu() {
           <button onClick={signOut} className="h-11 px-4 rounded-full border border-gray-200 text-zinc-700 hover:bg-gray-50">Sign out</button>
         </>
       ) : (
-        <>
-          <Link href="/account/login" className="h-11 px-5 rounded-full border border-gray-200 text-zinc-700 hover:bg-gray-50">Sign in</Link>
-          <Link href="/account/signup" className="h-11 px-5 rounded-full bg-[rgb(30,41,59)] text-white font-semibold hover:opacity-90">Sign up</Link>
-        </>
+        <Link href="/account/auth" className="h-11 px-5 rounded-full bg-[rgb(30,41,59)] text-white font-semibold hover:opacity-90">Sign in / up</Link>
       )}
     </div>
   )
