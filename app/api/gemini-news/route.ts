@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getBlogPosts } from '../../../lib/notion-api'
+import { NextResponse } from 'next/server'
 
 const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent'
 
