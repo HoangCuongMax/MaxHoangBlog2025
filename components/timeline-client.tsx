@@ -1,7 +1,9 @@
 'use client'
 
+"use client"
+
 import { useState, useMemo } from 'react'
-import { TimelineItem } from '../lib/notion-api'
+import type { TimelineItem } from '../lib/notion-api'
 import TimelineCardServer from './timeline-card-server'
 import TimelineFilter from './timeline-filter'
 
