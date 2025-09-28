@@ -97,15 +97,7 @@ export default function Navigation() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
               </button>
-              <a
-                aria-label="LinkedIn profile"
-                href="https://www.linkedin.com/in/maxhoangau/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-11 px-5 rounded-full bg-[rgb(30,41,59)] text-white font-semibold hover:opacity-90"
-              >
-                LinkedIn +
-              </a>
+              <AuthMenu />
             </div>
 
             {/* Mobile actions */}
