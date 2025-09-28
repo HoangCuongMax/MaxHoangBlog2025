@@ -26,7 +26,7 @@ export default async function Timeline() {
     return (
       <PageContainer noBoxStyling={true} maxWidthClass="max-w-none">
         <div className="relative">
-          <aside className="hidden md:block fixed left-0 top-24 h-[calc(100vh-6rem)] w-[300px] overflow-y-auto bg-white border-r border-gray-200">
+          <aside className="hidden md:block fixed left-0 top-0 h-screen w-[300px] overflow-y-auto bg-white border-r border-gray-200 z-40">
             <TimelineSidebar items={itemsWithContent} />
           </aside>
 
