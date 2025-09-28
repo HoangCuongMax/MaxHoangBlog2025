@@ -22,7 +22,7 @@ export default async function Timeline() {
 
     return (
       <PageContainer fullscreen={true}>
-        <TimelineClient itemsWithContent={itemsWithContent} />
+        <TimelineTwoPaneClient itemsWithContent={itemsWithContent} />
       </PageContainer>
     )
   } catch (error) {
