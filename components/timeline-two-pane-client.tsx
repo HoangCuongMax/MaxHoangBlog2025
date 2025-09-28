@@ -211,7 +211,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
         </div>
 
         {/* Main content area shifted right on desktop */}
-        <section className="lg:pl-[340px]">
+        <section className={`lg:pl-[340px] ${showTOC ? 'xl:pl-[660px]' : ''}`}>
           {selected && (
             showTOC ? (
               <TOCProvider>
