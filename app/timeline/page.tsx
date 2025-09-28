@@ -4,6 +4,8 @@ import TimelineClient from '../../components/timeline-client'
 import ErrorFallback from '../../components/error-fallback'
 import TimelineSidebar from '../../components/timeline-sidebar'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Timeline() {
   try {
     const items = await getTimelineItems()
