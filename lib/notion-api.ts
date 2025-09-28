@@ -27,7 +27,8 @@ export const PAGE_IDS = {
   home: envOr('NOTION_PAGE_HOME', '23f792d80ba380189a58c946bdcad944'),
   projects: envOr('NOTION_PAGE_PROJECTS', '23f792d80ba380a2a8ddd56aee32216a'),
   contact: envOr('NOTION_PAGE_CONTACT', '237792d80ba38002b795d261ca17b305'),
-  aiGuide: envOr('NOTION_PAGE_AI_GUIDE', '27a792d80ba38094ae60c555dd2f4c1e')
+  aiGuide: envOr('NOTION_PAGE_AI_GUIDE', '27a792d80ba38094ae60c555dd2f4c1e'),
+  dailyJournal: envOr('NOTION_PAGE_DAILY_JOURNAL', '27c792d80ba380d0b6c6d79cb8a235a5')
 }
 
 // Database IDs (overridable via env)
