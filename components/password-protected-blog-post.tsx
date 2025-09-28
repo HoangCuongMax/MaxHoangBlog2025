@@ -1,9 +1,11 @@
 'use client'
 
+"use client"
+
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import PasswordProtection from './password-protection'
-import { BlogPost } from '../lib/notion-api'
+import type { BlogPost } from '../lib/notion-api'
 
 interface PasswordProtectedBlogPostProps {
   post: BlogPost
