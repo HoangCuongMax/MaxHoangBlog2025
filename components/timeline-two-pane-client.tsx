@@ -5,9 +5,14 @@ import Link from 'next/link'
 import type { TimelineItem } from '../lib/notion-api'
 import PhotoGallerySlider from './photo-gallery-slider'
 import NotionPage from './notion-page'
+import FloatingTOC from './floating-toc'
+import { TOCProvider } from './toc-context'
+import ResponsiveContentWrapper from './responsive-content-wrapper'
 
 interface TimelineTwoPaneClientProps {
   itemsWithContent: (TimelineItem & { recordMap?: any })[]
+  useGallery?: boolean
+  showTOC?: boolean
 }
 
 // Extract images (url+caption) from a Notion recordMap
@@ -64,7 +69,7 @@ function extractImages(recordMap: any): Array<{ url: string; caption?: string }>
   return images
 }
 
-export default function TimelineTwoPaneClient({ itemsWithContent }: TimelineTwoPaneClientProps) {
+export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = true, showTOC = false }: TimelineTwoPaneClientProps) {
   const [query, setQuery] = useState('')
   const [selectedId, setSelectedId] = useState(itemsWithContent[0]?.id || '')
 
@@ -194,38 +199,81 @@ export default function TimelineTwoPaneClient({ itemsWithContent }: TimelineTwoP
         {/* Main content area shifted right on desktop */}
         <section className="lg:pl-[340px]">
           {selected && (
-            <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
-              {images.length > 0 ? (
-                <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
-              ) : selected.coverImage ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
-              ) : null}
+            showTOC ? (
+              <TOCProvider>
+                <FloatingTOC />
+                <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
+                  <ResponsiveContentWrapper>
+                    <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
+                      {/* Cover or gallery (optional) */}
+                      {useGallery && images.length > 0 ? (
+                        <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
+                      ) : selected.coverImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
+                      ) : null}
 
-              <div className="p-4 sm:p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">{selected.title}</h2>
-                {selected.date && (
-                  <div className="text-sm text-gray-500 mb-4">{formatDate(selected.date)}</div>
-                )}
-                {selected.description && (
-                  <p className="text-gray-700 leading-relaxed mb-4">{selected.description}</p>
-                )}
-                {(selected.tags && selected.tags.length > 0) && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {selected.tags.slice(0, 6).map((t, i) => (
-                      <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-md">{t}</span>
-                    ))}
-                  </div>
-                )}
-                {selected.recordMap ? (
-                  <article className={`mt-2 notion-content ${images.length > 0 ? 'has-gallery' : ''}`}>
-                    <NotionPage recordMap={selected.recordMap} />
-                  </article>
-                ) : (
-                  <div className="text-sm text-gray-500">No additional content available.</div>
-                )}
-              </div>
-            </article>
+                      <div className="p-4 sm:p-6">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">{selected.title}</h2>
+                        {selected.date && (
+                          <div className="text-sm text-gray-500 mb-4">{formatDate(selected.date)}</div>
+                        )}
+                        {selected.description && (
+                          <p className="text-gray-700 leading-relaxed mb-4">{selected.description}</p>
+                        )}
+                        {(selected.tags && selected.tags.length > 0) && (
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {selected.tags.slice(0, 6).map((t, i) => (
+                              <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-md">{t}</span>
+                            ))}
+                          </div>
+                        )}
+                        {selected.recordMap ? (
+                          <article className={`mt-2 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
+                            <NotionPage recordMap={selected.recordMap} />
+                          </article>
+                        ) : (
+                          <div className="text-sm text-gray-500">No additional content available.</div>
+                        )}
+                      </div>
+                    </article>
+                  </ResponsiveContentWrapper>
+                </div>
+              </TOCProvider>
+            ) : (
+              <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
+                {useGallery && images.length > 0 ? (
+                  <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
+                ) : selected.coverImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
+                ) : null}
+
+                <div className="p-4 sm:p-6">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{selected.title}</h2>
+                  {selected.date && (
+                    <div className="text-sm text-gray-500 mb-4">{formatDate(selected.date)}</div>
+                  )}
+                  {selected.description && (
+                    <p className="text-gray-700 leading-relaxed mb-4">{selected.description}</p>
+                  )}
+                  {(selected.tags && selected.tags.length > 0) && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {selected.tags.slice(0, 6).map((t, i) => (
+                        <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-md">{t}</span>
+                      ))}
+                    </div>
+                  )}
+                  {selected.recordMap ? (
+                    <article className={`mt-2 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
+                      <NotionPage recordMap={selected.recordMap} />
+                    </article>
+                  ) : (
+                    <div className="text-sm text-gray-500">No additional content available.</div>
+                  )}
+                </div>
+              </article>
+            )
           )}
         </section>
       </div>
