@@ -74,15 +74,39 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
   const [selectedId, setSelectedId] = useState(itemsWithContent[0]?.id || '')
   const [navVisible, setNavVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [activeFilter, setActiveFilter] = useState<string>('')
 
+  // Build categories/tags list
+  const allCategories = useMemo(() => {
+    const s = new Set<string>()
+    for (const i of itemsWithContent) {
+      if (i.category) s.add(String(i.category))
+      for (const t of i.tags || []) s.add(String(t))
+    }
+    return Array.from(s).sort((a,b)=>a.localeCompare(b))
+  }, [itemsWithContent])
+
+  // Filter by search query and category/tag
   const items = useMemo(() => {
     const q = query.trim().toLowerCase()
-    if (!q) return itemsWithContent
     return itemsWithContent.filter(i => {
-      const hay = `${i.title} ${i.description || ''} ${(i.tags || []).join(' ')}`.toLowerCase()
+      // category/tag filter
+      if (activeFilter) {
+        const tags = new Set([...(i.tags || []), i.category || ''].map(v => String(v).toLowerCase()).filter(Boolean))
+        if (!tags.has(activeFilter.toLowerCase())) return false
+      }
+      if (!q) return true
+      const hay = `${i.title} ${i.description || ''} ${(i.tags || []).join(' ')} ${i.category || ''}`.toLowerCase()
       return hay.includes(q)
     })
-  }, [itemsWithContent, query])
+  }, [itemsWithContent, query, activeFilter])
+
+  // Ensure a valid selectedId after filtering
+  useEffect(() => {
+    if (!items.find(i => i.id === selectedId)) {
+      setSelectedId(items[0]?.id || '')
+    }
+  }, [items, selectedId])
 
   const selected = useMemo(() => itemsWithContent.find(i => i.id === selectedId) || itemsWithContent[0], [itemsWithContent, selectedId])
   const images = useMemo(() => (selected?.recordMap ? extractImages(selected.recordMap) : []), [selected])
