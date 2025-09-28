@@ -11,7 +11,7 @@ interface TOCItem {
   level: number
 }
 
-export default function FloatingTOC({ leftOffsetClass = 'left-8', topPx = 96 }: { leftOffsetClass?: string; topPx?: number }) {
+export default function FloatingTOC({ leftOffsetClass = 'left-8', topPx = 96, topClass }: { leftOffsetClass?: string; topPx?: number; topClass?: string }) {
   const [tocItems, setTocItems] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
   const [showSuggestion, setShowSuggestion] = useState<boolean>(true)
@@ -178,7 +178,7 @@ export default function FloatingTOC({ leftOffsetClass = 'left-8', topPx = 96 }: 
   if (tocItems.length === 0) return null
 
   return (
-    <div className={`hidden xl:block fixed ${leftOffsetClass} z-10`} style={{ top: topPx, bottom: 0 }}>
+    <div className={`hidden xl:block fixed ${leftOffsetClass} ${topClass ? topClass : ''} z-10`} style={topClass ? { bottom: 0 } : { top: topPx, bottom: 0 }}>
       {isMinimized ? (
         <div className="h-full w-10 flex items-start pt-2">
           <button
