@@ -14,10 +14,15 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const load = async () => {
-      const { data } = await supabase.auth.getUser()
-      if (!data.user) { router.replace('/account/login'); return }
-      setEmail(data.user.email)
-      setLoading(false)
+      try {
+        const { data } = await supabase.auth.getUser()
+        if (!data.user) { router.replace('/account/login'); return }
+        setEmail(data.user.email)
+        setLoading(false)
+      } catch (e) {
+        console.error('Error fetching user in profile:', e)
+        router.replace('/account/login')
+      }
     }
     load()
   }, [router])
