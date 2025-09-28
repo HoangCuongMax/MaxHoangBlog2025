@@ -91,6 +91,7 @@ export default function RootLayout({
         </main>
         {Footer ? <Footer /> : (console.error('Footer component is undefined'), null)}
         {ContactPopup ? <ContactPopup /> : (console.error('ContactPopup component is undefined'), null)}
+        <SpeedInsights />
       </body>
     </html>
   )
