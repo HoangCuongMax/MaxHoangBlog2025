@@ -19,7 +19,7 @@ export default async function Projects() {
 
         <PageContainer noBoxStyling={true}>
           <TOCProvider>
-            <FloatingTOC />
+            <FloatingTOC topClass="top-[240px] md:top-[320px] lg:top-[400px]" />
             <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
               <ResponsiveContentWrapper>
                 <NotionPage recordMap={recordMap} />
