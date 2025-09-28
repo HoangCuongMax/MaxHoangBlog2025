@@ -100,16 +100,10 @@ export default function TimelineTwoPaneClient({ itemsWithContent }: TimelineTwoP
 
   return (
     <div className="w-full">
-      {/* Page header */}
-      <div className="mb-4">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Timeline</h1>
-        <p className="text-sm text-gray-600">A chronological journey through my experiences, achievements, and milestones</p>
-      </div>
-
       {/* Two-pane layout */}
       <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4 lg:gap-6">
         {/* Sidebar */}
-        <aside className="lg:sticky lg:top-24 lg:h-[calc(100vh-6rem)] overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-xl p-3 sm:p-4">
+        <aside className="lg:sticky lg:top-0 lg:h-screen overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-xl p-3 sm:p-4">
           <div className="mb-3">
             <div className="relative">
               <input
