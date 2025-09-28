@@ -7,10 +7,7 @@ interface TimelineSidebarProps {
 export default function TimelineSidebar({ items }: TimelineSidebarProps) {
   if (!items || items.length === 0) {
     return (
-      <div className="border border-gray-200 rounded-xl bg-white shadow-sm">
-        <div className="px-3 py-2 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">Posts</div>
-        <div className="p-3 text-sm text-gray-500">No timeline items yet</div>
-      </div>
+      <div className="p-3 text-sm text-gray-500">No timeline items yet</div>
     )
   }
 
