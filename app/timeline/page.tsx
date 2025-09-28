@@ -25,16 +25,14 @@ export default async function Timeline() {
 
     return (
       <PageContainer noBoxStyling={true} maxWidthClass="max-w-none">
-        <div className="grid grid-cols-1 md:grid-cols-[300px,1fr,300px] gap-6">
-          <aside className="hidden md:block md:fixed md:left-0 md:top-24 md:h-[calc(100vh-6rem)] md:w-[300px] overflow-y-auto">
+        <div className="relative">
+          <aside className="hidden md:block fixed left-0 top-24 h-[calc(100vh-6rem)] w-[300px] overflow-y-auto bg-white border-r border-gray-200">
             <TimelineSidebar items={itemsWithContent} />
           </aside>
 
-          <article className="min-w-0 col-start-2 justify-self-center mx-auto w-full">
+          <article className="min-w-0 mx-auto w-full md:pl-[320px] pr-6">
             <TimelineClient itemsWithContent={itemsWithContent} />
           </article>
-
-          <div className="hidden md:block col-start-3" />
         </div>
       </PageContainer>
     )
