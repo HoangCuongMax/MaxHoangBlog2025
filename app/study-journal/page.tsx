@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import { getStudyJournalPosts, getFirstImageUrlFromPage } from '../../lib/notion-api'
+import dynamicImport from 'next/dynamic'
+import { getStudyJournalPosts, getFirstImageUrlFromPage, getNotionPage, DATABASE_IDS } from '../../lib/notion-api'
 import PageContainer from '../../components/page-container'
 import ErrorFallback from '../../components/error-fallback'
+const NotionPage = dynamicImport(() => import('../../components/notion-page'), { ssr: false })
 
 // Revalidate every hour
 export const revalidate = 3600
@@ -20,6 +22,24 @@ type SearchParams = { tag?: string }
 export default async function StudyJournal({ searchParams }: { searchParams: SearchParams }) {
   try {
     const posts = await getStudyJournalPosts()
+
+    // Fallback: render the Notion database page when no posts (official API unavailable)
+    if (!posts || posts.length === 0) {
+      try {
+        const recordMap = await getNotionPage(DATABASE_IDS.studyJournal)
+        return (
+          <PageContainer noBoxStyling={true} maxWidthClass="max-w-5xl">
+            <div className="mb-4 lg:mb-6">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Study Journal</h1>
+              <p className="text-sm text-gray-600 mt-1">Rendered directly from Notion.</p>
+            </div>
+            <NotionPage recordMap={recordMap} />
+          </PageContainer>
+        )
+      } catch (e) {
+        console.error('Study Journal fallback failed:', e)
+      }
+    }
 
     const placeholderFor = (title: string) => {
       const bg = 'eef2f7'
