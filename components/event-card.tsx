@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Event } from '../lib/notion-api'
+import type { Event } from '../lib/notion-api'
 
 interface EventCardProps {
   event: Event
