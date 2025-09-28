@@ -1,5 +1,7 @@
 "use client"
 
+"use client"
+
 import { useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
 import type { TimelineItem } from '../lib/notion-api'
