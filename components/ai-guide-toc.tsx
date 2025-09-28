@@ -45,6 +45,23 @@ export default function AiGuideToc({ headings }: AiGuideTocProps) {
     return () => observer.current?.disconnect()
   }, [headings])
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const el = document.getElementById(id)
+    if (!el) {
+      // Fallback: try data-block-id selector from react-notion-x
+      const dataEl = document.querySelector(`[data-block-id="${id}"]`) as HTMLElement | null
+      if (!dataEl) return
+      const y = dataEl.getBoundingClientRect().top + window.pageYOffset - 96
+      window.scrollTo({ top: y, behavior: 'smooth' })
+      history.replaceState(null, '', `#${id}`)
+      return
+    }
+    const y = el.getBoundingClientRect().top + window.pageYOffset - 96
+    window.scrollTo({ top: y, behavior: 'smooth' })
+    history.replaceState(null, '', `#${id}`)
+  }
+
   return (
     <div className="toc border border-gray-200 rounded-xl bg-white shadow-sm">
       <div className="px-3 py-2 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">Contents</div>
@@ -63,6 +80,7 @@ export default function AiGuideToc({ headings }: AiGuideTocProps) {
               <li key={h.id} className={h.level === 1 ? 'pl-1' : h.level === 2 ? 'pl-4' : 'pl-7'}>
                 <a
                   href={`#${h.id}`}
+                  onClick={(e) => handleClick(e, h.id)}
                   className={`block py-1 text-sm text-gray-700 hover:text-blue-700 underline-offset-2 ${activeId === h.id ? 'active' : ''}`}
                 >
                   {h.text}
