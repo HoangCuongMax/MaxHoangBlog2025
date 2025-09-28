@@ -25,7 +25,10 @@ export default function WhatsNews() {
       if (!res.ok) throw new Error(data?.error || 'Failed to generate')
       setResult(data.result || '')
     } catch (e: any) {
-      setError(e.message || 'Failed to generate')
+      // Try to show more details if available
+      const msg = e?.message || (e?.toString ? e.toString() : 'Failed to generate')
+      setError(msg)
+      console.error('WhatsNews error:', e)
     } finally {
       setLoading(false)
     }
