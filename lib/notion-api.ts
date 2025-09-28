@@ -3,27 +3,38 @@ import { NotionAPI } from 'notion-client'
 import { generateSlug } from './seo-utils'
 
 // Initialize the official Notion API client with your token
+if (!process.env.NOTION_TOKEN) {
+  console.warn('NOTION_TOKEN is not set. Notion API requests will fail.')
+}
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 
-// Keep the unofficial client for page rendering only
-const notionUnofficial = new NotionAPI()
+// Keep the unofficial client for page rendering only (optionally with auth for private pages)
+const notionUnofficial = new NotionAPI({
+  authToken: process.env.NOTION_AUTH_TOKEN || undefined,
+})
 
-// Page IDs extracted from the URLs
-export const PAGE_IDS = {
-  home: '23f792d80ba380189a58c946bdcad944',
-  projects: '23f792d80ba380a2a8ddd56aee32216a',
-  contact: '237792d80ba38002b795d261ca17b305',
-  aiGuide: '27a792d80ba38094ae60c555dd2f4c1e'
+// Helper to allow overriding IDs via environment variables
+const envOr = (key: string, fallback: string) => {
+  const v = process.env[key]
+  return v && v.trim().length > 0 ? v : fallback
 }
 
-// Database IDs (cleaned format without dashes)
+// Page IDs extracted from the URLs (overridable via env)
+export const PAGE_IDS = {
+  home: envOr('NOTION_PAGE_HOME', '23f792d80ba380189a58c946bdcad944'),
+  projects: envOr('NOTION_PAGE_PROJECTS', '23f792d80ba380a2a8ddd56aee32216a'),
+  contact: envOr('NOTION_PAGE_CONTACT', '237792d80ba38002b795d261ca17b305'),
+  aiGuide: envOr('NOTION_PAGE_AI_GUIDE', '27a792d80ba38094ae60c555dd2f4c1e')
+}
+
+// Database IDs (overridable via env)
 export const DATABASE_IDS = {
-  blog: '237792d80ba38063ac29cc15fe37ffbb',
-  timeline: '22b792d80ba3808db9e9c129d735ef7b',
-  studyJournal: '250792d80ba380aa81c7d0b21421c830', // New Study Journal database
-  events: '252792d80ba38097a898f3d9cae0ad95' // Events List database
+  blog: envOr('NOTION_DB_BLOG', '237792d80ba38063ac29cc15fe37ffbb'),
+  timeline: envOr('NOTION_DB_TIMELINE', '22b792d80ba3808db9e9c129d735ef7b'),
+  studyJournal: envOr('NOTION_DB_STUDY_JOURNAL', '250792d80ba380aa81c7d0b21421c830'),
+  events: envOr('NOTION_DB_EVENTS', '252792d80ba38097a898f3d9cae0ad95')
 }
 
 // Blog post interface
