@@ -23,7 +23,7 @@ export default async function Timeline() {
     return (
       <PageContainer fullscreen={true}>
         <style>{`@media (min-width:1024px){footer{padding-left:340px}}`}</style>
-        <TimelineTwoPaneClient itemsWithContent={itemsWithContent} />
+        <TimelineTwoPaneClient itemsWithContent={itemsWithContent} useGallery={false} />
       </PageContainer>
     )
   } catch (error) {
