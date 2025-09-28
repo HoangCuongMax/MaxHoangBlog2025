@@ -180,12 +180,14 @@ export default function TimelineTwoPaneClient({ itemsWithContent }: TimelineTwoP
                     ))}
                   </div>
                 )}
-                <div className="flex items-center gap-3">
-                  <Link href={`/timeline/${selected.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">
-                    Read full post
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </Link>
-                </div>
+                {/* Full content */}
+                {selected.recordMap ? (
+                  <article className={`mt-2 notion-content ${images.length > 0 ? 'has-gallery' : ''}`}>
+                    <NotionPage recordMap={selected.recordMap} />
+                  </article>
+                ) : (
+                  <div className="text-sm text-gray-500">No additional content available.</div>
+                )}
               </div>
             </article>
           )}
