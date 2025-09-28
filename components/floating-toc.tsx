@@ -177,23 +177,44 @@ export default function FloatingTOC({ leftOffsetClass = 'left-8', topPx = 96 }: 
 
   return (
     <div className={`hidden xl:block fixed ${leftOffsetClass} z-10`} style={{ top: topPx, bottom: 0 }}>
-      <div className="h-full overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-3 sm:p-4 w-[300px]">
-        <div className="text-[11px] uppercase tracking-wide text-gray-500 font-semibold mb-2">Contents</div>
-        <nav className="space-y-0 divide-y divide-gray-100">
-          {tocItems.map((item) => (
+      {isMinimized ? (
+        <div className="h-full w-10 flex items-start pt-2">
+          <button
+            onClick={() => { setIsMinimized(false); setShowSuggestion(false) }}
+            className={`ml-1 inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/80 border border-gray-300 text-gray-600 hover:bg-white ${showSuggestion ? 'animate-bounce' : ''}`}
+            title="Open contents"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      ) : (
+        <div className="h-full overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 px-3 py-3 w-[280px]">
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Contents</div>
             <button
-              key={item.id}
-              onClick={() => handleClick(item.id)}
-              className={`block w-full text-left text-[13px] leading-snug py-2 px-2 hover:bg-gray-50 transition-colors ${
-                activeId === item.id ? 'bg-blue-50 text-blue-700 border-l-2 border-blue-600' : 'text-gray-700 border-l-2 border-transparent'
-              }`}
-              style={{ paddingLeft: `${Math.min(item.level * 12, 24) + 6}px` }}
+              onClick={() => setIsMinimized(true)}
+              className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/80 border border-gray-300 text-gray-600 hover:bg-white"
+              title="Close contents"
             >
-              {item.text}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/></svg>
             </button>
-          ))}
-        </nav>
-      </div>
+          </div>
+          <nav>
+            {tocItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                className={`block w-full text-left text-[13px] leading-snug py-1.5 px-2 hover:bg-gray-50 transition-colors border-b last:border-b-0 ${
+                  activeId === item.id ? 'bg-blue-50 text-blue-700 border-l-2 border-blue-600' : 'text-gray-700 border-l-2 border-transparent border-gray-100'
+                }`}
+                style={{ paddingLeft: `${Math.min(item.level * 12, 24) + 6}px` }}
+              >
+                {item.text}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
     </div>
   )
 }
