@@ -25,6 +25,15 @@ export default function TimelineSidebar({ items }: TimelineSidebarProps) {
     }
   }
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    const el = document.getElementById(id)
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.pageYOffset - 96
+    window.scrollTo({ top: y, behavior: 'smooth' })
+    history.replaceState(null, '', `#${id}`)
+  }
+
   return (
     <div className="border border-gray-200 rounded-xl bg-white shadow-sm">
       <div className="px-3 py-2 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">Posts</div>
@@ -33,7 +42,7 @@ export default function TimelineSidebar({ items }: TimelineSidebarProps) {
           <ul className="space-y-3">
             {items.map((item) => (
               <li key={item.id}>
-                <a href={`#${item.id}`} className="block group">
+                <a href={`#${item.id}`} onClick={(e) => handleClick(e, item.id)} className="block group">
                   <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 leading-snug">
                     {item.title}
                   </div>
