@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import { TimelineItem } from '../lib/notion-api'
+import type { TimelineItem } from '../lib/notion-api'
 
 interface TimelineFilterProps {
   items: TimelineItem[]
