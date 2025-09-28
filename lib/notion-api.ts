@@ -13,6 +13,7 @@ const notion = new Client({
 // Keep the unofficial client for page rendering only (optionally with auth for private pages)
 const notionUnofficial = new NotionAPI({
   authToken: process.env.NOTION_AUTH_TOKEN || undefined,
+  activeUser: process.env.NOTION_ACTIVE_USER || undefined,
 })
 
 // Helper to allow overriding IDs via environment variables
