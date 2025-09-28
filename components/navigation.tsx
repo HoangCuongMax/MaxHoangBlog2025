@@ -11,6 +11,7 @@ const siteNav = [
   { href: '/study-journal', label: 'AI Journal' },
   { href: '/ai-guide', label: 'AI Guide' },
   { href: '/projects', label: 'Projects' },
+  { href: '/daily-journal', label: 'Daily Journal' },
   { href: '/contact', label: 'Contact' },
 ]
 
