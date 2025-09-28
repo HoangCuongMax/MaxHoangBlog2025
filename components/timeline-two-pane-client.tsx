@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
 import type { TimelineItem } from '../lib/notion-api'
 import PhotoGallerySlider from './photo-gallery-slider'
