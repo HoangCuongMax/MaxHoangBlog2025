@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { BlogPost } from '../lib/notion-api'
+import type { BlogPost } from '../lib/notion-api'
 
 interface RelatedPostsPopupProps {
   relatedPosts: BlogPost[]
