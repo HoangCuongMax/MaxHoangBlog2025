@@ -38,7 +38,7 @@ export default function TimelineSidebar({ items }: TimelineSidebarProps) {
                     {item.title}
                   </div>
                   {item.description ? (
-                    <div className="text-xs text-gray-600 mt-1 line-clamp-3">
+                    <div className="text-xs text-gray-600 mt-1 overflow-hidden text-ellipsis">
                       {item.description}
                     </div>
                   ) : null}
