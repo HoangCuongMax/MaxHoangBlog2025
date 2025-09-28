@@ -87,6 +87,18 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
   const selected = useMemo(() => itemsWithContent.find(i => i.id === selectedId) || itemsWithContent[0], [itemsWithContent, selectedId])
   const images = useMemo(() => (selected?.recordMap ? extractImages(selected.recordMap) : []), [selected])
 
+  // Mirror Navigation visibility logic to adjust sidebar top offset
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || 0
+      if (y < lastScrollY || y < 10) setNavVisible(true)
+      else if (y > lastScrollY && y > 100) setNavVisible(false)
+      setLastScrollY(y)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [lastScrollY])
+
   const formatDate = (dateString?: string) => {
     if (!dateString) return ''
     try {
