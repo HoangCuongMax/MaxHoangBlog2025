@@ -41,19 +41,15 @@ export default async function Projects() {
         <PageCoverHeader metadata={metadata} />
 
         <PageContainer noBoxStyling={true} maxWidthClass="max-w-none">
-          <div className="book-layout">
-            <div className="grid grid-cols-1 md:grid-cols-[300px,1fr,300px] gap-6">
-              <aside className="hidden md:block md:fixed md:left-0 md:top-24 md:h-[calc(100vh-6rem)] md:w-[300px] overflow-y-auto">
-                <AiGuideToc headings={headings} />
-              </aside>
+          <div className="book-layout relative">
+            <aside className="hidden md:block fixed left-0 top-24 h-[calc(100vh-6rem)] w-[300px] overflow-y-auto bg-white border-r border-gray-200">
+              <AiGuideToc headings={headings} bare />
+            </aside>
 
-              <article className="min-w-0 content-article col-start-2 justify-self-center mx-auto">
-                <NotionPage recordMap={recordMap} />
-                <NotionLinkInterceptor />
-              </article>
-
-              <div className="hidden md:block col-start-3" />
-            </div>
+            <article className="min-w-0 content-article mx-auto md:pl-[320px] pr-6">
+              <NotionPage recordMap={recordMap} />
+              <NotionLinkInterceptor />
+            </article>
           </div>
         </PageContainer>
       </>
