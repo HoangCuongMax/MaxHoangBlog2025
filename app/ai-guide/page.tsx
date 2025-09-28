@@ -52,7 +52,7 @@ export default async function AiGuidePage() {
           <AiGuideToc headings={headings} bare />
         </aside>
 
-        <article className="min-w-0 content-article mx-auto md:pl-[320px] pr-6">
+        <article className="min-w-0 content-article mx-auto">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
           <div className="notion-content w-full">
             <NotionPage recordMap={recordMap} />
