@@ -8,6 +8,8 @@ import PageCoverHeader from '../components/page-cover-header'
 import ProfileLinktree from '../components/profile-linktree'
 import { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   try {
     const { recordMap, metadata } = await getPageByKeyWithMetadata('home')
