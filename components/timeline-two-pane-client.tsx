@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import type { TimelineItem } from '../lib/notion-api'
 import PhotoGallerySlider from './photo-gallery-slider'
+import NotionPage from './notion-page'
 
 interface TimelineTwoPaneClientProps {
   itemsWithContent: (TimelineItem & { recordMap?: any })[]
