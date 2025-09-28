@@ -108,7 +108,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
       {/* Two-pane layout */}
       <div className="relative">
         {/* Fixed Sidebar on desktop */}
-        <aside className="hidden lg:block fixed top-24 bottom-0 left-0 w-[320px] overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-3 sm:p-4">
+        <aside className="hidden lg:block fixed bottom-0 left-0 w-[320px] overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-3 sm:p-4" style={{ top: navVisible ? '6rem' : 0 }}>
           <div className="mb-3">
             <div className="relative">
               <input
