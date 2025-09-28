@@ -51,7 +51,7 @@ export default async function DailyJournalPage() {
 
         <article className="min-w-0 content-article mx-auto">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{title}</h1>
-          <div className="notion-content w-full">
+          <div className="notion-content w-full max-w-[1024px] mx-auto">
             <NotionPage recordMap={recordMap} />
           </div>
         </article>
