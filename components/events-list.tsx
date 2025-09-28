@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Event } from '../lib/notion-api'
+import type { Event } from '../lib/notion-api'
 import EventCard from './event-card'
 
 interface EventsListProps {
