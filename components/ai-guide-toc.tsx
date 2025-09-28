@@ -10,9 +10,10 @@ export interface HeadingItem {
 
 interface AiGuideTocProps {
   headings: HeadingItem[]
+  bare?: boolean
 }
 
-export default function AiGuideToc({ headings }: AiGuideTocProps) {
+export default function AiGuideToc({ headings, bare = false }: AiGuideTocProps) {
   const [query, setQuery] = useState('')
   const [activeId, setActiveId] = useState<string>('')
   const observer = useRef<IntersectionObserver | null>(null)
@@ -63,8 +64,8 @@ export default function AiGuideToc({ headings }: AiGuideTocProps) {
   }
 
   return (
-    <div className="toc border border-gray-200 rounded-xl bg-white shadow-sm">
-      <div className="px-3 py-2 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">Contents</div>
+    <div className={`toc ${bare ? '' : 'border border-gray-200 rounded-xl bg-white shadow-sm'}`}>
+      <div className={`px-3 py-2 ${bare ? '' : 'border-b border-gray-100'} text-xs font-semibold text-gray-500 uppercase`}>Contents</div>
       <div className="p-3">
         <input
           type="search"
