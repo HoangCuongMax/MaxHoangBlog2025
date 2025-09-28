@@ -72,6 +72,8 @@ function extractImages(recordMap: any): Array<{ url: string; caption?: string }>
 export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = true, showTOC = false }: TimelineTwoPaneClientProps) {
   const [query, setQuery] = useState('')
   const [selectedId, setSelectedId] = useState(itemsWithContent[0]?.id || '')
+  const [navVisible, setNavVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   const items = useMemo(() => {
     const q = query.trim().toLowerCase()
