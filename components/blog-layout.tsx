@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { BlogPost } from '../lib/notion-api'
+import type { BlogPost } from '../lib/notion-api'
 import BlogCard from './blog-card'
 import BlogSidebar from './blog-sidebar'
 
