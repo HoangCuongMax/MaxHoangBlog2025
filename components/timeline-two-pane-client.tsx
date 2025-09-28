@@ -159,6 +159,20 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
             </div>
           </div>
 
+          <div className="mb-3">
+            <label className="block text-xs font-medium text-gray-600 mb-1">Category</label>
+            <select
+              value={activeFilter}
+              onChange={(e) => setActiveFilter(e.target.value)}
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">All</option>
+              {allCategories.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
           <nav className="space-y-0 divide-y divide-gray-100">
             {items.map((item) => (
               <button
