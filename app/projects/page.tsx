@@ -19,8 +19,8 @@ export default async function Projects() {
 
         <PageContainer noBoxStyling={true}>
           <TOCProvider>
-            <FloatingTOC topClass="top-[240px] md:top-[320px] lg:top-[400px]" />
-            <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
+            <FloatingTOC leftOffsetClass="left-0" topClass="top-0" />
+            <div className="transition-all duration-300 ease-in-out">
               <ResponsiveContentWrapper>
                 <NotionPage recordMap={recordMap} />
                 <NotionLinkInterceptor />
