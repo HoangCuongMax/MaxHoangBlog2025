@@ -154,6 +154,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32">
           <ResponsiveContentWrapper>
           <PageContainer noBoxStyling={true}>
+            <style>{`.page-container > div{padding:0!important}`}</style>
         {/* Structured Data */}
         {structuredData && (
           <script

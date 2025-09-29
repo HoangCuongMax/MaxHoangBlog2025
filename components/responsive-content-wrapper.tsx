@@ -13,10 +13,10 @@ export default function ResponsiveContentWrapper({ children }: ResponsiveContent
   return (
     <div className={`transition-all duration-300 ${
       !hasTOC
-        ? 'xl:mx-auto xl:max-w-[1024px]' // When no TOC, center content with max width
+        ? 'xl:mx-auto xl:max-w-[1200px]'
         : isMinimized
-        ? 'xl:ml-8 xl:mr-8 xl:max-w-[1024px]' // When minimized, balanced margins with capped width
-        : 'xl:ml-80 xl:mr-4 xl:max-w-[1024px]'  // When expanded, left margin for TOC space with capped width
+        ? 'xl:ml-8 xl:mr-8 xl:max-w-[1200px]'
+        : 'xl:ml-80 xl:mr-4 xl:max-w-[1200px]'
     }`}>
       {children}
     </div>

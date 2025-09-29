@@ -289,8 +289,8 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
         </div>
 
         {/* Mobile list like blog */}
-        <div className="lg:hidden mb-4">
-          <div className="px-2">
+        <div className="lg:hidden">
+          <div>
             <div className="mb-3">
               <div className="relative">
                 <input
@@ -318,7 +318,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 px-2">
+          <div className="grid grid-cols-1 gap-3">
             {items.map((item) => (
               <TimelineCard key={item.id} item={item} href={`/timeline/${item.id}`} />
             ))}
@@ -326,7 +326,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
         </div>
 
         {/* Main content area shifted right on desktop */}
-        <section className="hidden lg:block pb-24 lg:pb-0 lg:pl-[340px] max-w-[1024px] mx-auto flex flex-col justify-center items-center">
+        <section className="hidden lg:block pb-24 lg:pb-0 lg:pl-[340px] max-w-[1200px] mx-auto flex flex-col justify-center items-center">
           {selected && (
             showTOC ? (
               <TOCProvider>
@@ -342,7 +342,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                         <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover -mt-px" />
                       ) : null}
 
-                      <div className="p-3 sm:p-5">
+                      <div>
                         {selected.isFeatured && (
                           <div className="mb-2">
                             <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
@@ -383,7 +383,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover -mt-px" />
                 ) : null}
 
-                <div className="p-3 sm:p-5">
+                <div>
                   {selected.isFeatured && (
                     <div className="mb-2">
                       <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
