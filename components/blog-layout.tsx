@@ -93,7 +93,7 @@ export default function BlogLayout({ posts }: BlogLayoutProps) {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 max-w-[1024px] mx-auto flex flex-col">
         {/* Current Filter Info - Hidden on mobile when showing toggle */}
         <div className="mb-6 hidden lg:block">
           <div className="flex items-center justify-between">
