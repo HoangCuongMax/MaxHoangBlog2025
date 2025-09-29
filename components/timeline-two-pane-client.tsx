@@ -331,7 +331,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
             showTOC ? (
               <TOCProvider>
                 <FloatingTOC key={selected?.id} leftOffsetClass="left-[320px]" topPx={navVisible ? 96 : 0} />
-                <div className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 transition-all duration-300 ease-in-out">
+                <div className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 transition-all duration-300 ease-in-out max-w-[1024px] mx-auto flex flex-col items-center justify-center">
                   <ResponsiveContentWrapper>
                     <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
                       {/* Cover or gallery (optional) */}
