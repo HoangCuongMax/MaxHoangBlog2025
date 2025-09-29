@@ -9,8 +9,9 @@ const siteNav = [
   { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
   { href: '/timeline', label: 'Timeline' },
-  { href: '/study-journal', label: 'AI Journal' },
-  { href: '/projects', label: 'Projects' },
+  { href: '/study-journal', label: 'Study Journal' },
+  { href: '/projects', label: 'Check List' },
+  { href: 'https://www.notion.so/hoangcuong/27d792d80ba380e59c2af084b131dbc7?v=27d792d80ba381b6a38a000c6d4e70e3', label: 'AI Guide', external: true },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -77,11 +78,17 @@ export default function Navigation() {
 
             {/* Desktop menu */}
             <ul className={`hidden md:flex items-center gap-8 text-base ${navColor} ml-4`}> 
-              {siteNav.map((item) => (
+              {siteNav.map((item: any) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-zinc-900 transition-colors">
-                    {item.label}
-                  </Link>
+                  {item.external ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className="hover:text-zinc-900 transition-colors">
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -138,11 +145,17 @@ export default function Navigation() {
               <div className="mx-auto max-w-7xl px-2">
                 <div className="rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden">
                   <ul className="py-2">
-                    {siteNav.map((item) => (
+                    {siteNav.map((item: any) => (
                       <li key={item.href}>
-                        <Link href={item.href} onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-base text-zinc-700 hover:bg-gray-50">
-                          {item.label}
-                        </Link>
+                        {item.external ? (
+                          <a href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-base text-zinc-700 hover:bg-gray-50">
+                            {item.label}
+                          </a>
+                        ) : (
+                          <Link href={item.href} onClick={() => setMobileOpen(false)} className="block px-4 py-3 text-base text-zinc-700 hover:bg-gray-50">
+                            {item.label}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
