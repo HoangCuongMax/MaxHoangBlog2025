@@ -269,7 +269,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                           {new Date(post.publishDate).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'short',
-                            day: 'numeric'
+                            day: 'numeric',
+                            timeZone: 'UTC'
                           })}
                         </p>
                       )}

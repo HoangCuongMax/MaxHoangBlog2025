@@ -130,7 +130,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
   const formatDate = (dateString?: string) => {
     if (!dateString) return ''
     try {
-      return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+      return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
     } catch {
       return ''
     }
