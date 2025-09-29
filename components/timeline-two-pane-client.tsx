@@ -77,6 +77,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
   const [navVisible, setNavVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [activeFilter, setActiveFilter] = useState<string>('')
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   // Build categories/tags list
   const allCategories = useMemo(() => {
@@ -205,63 +206,75 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           </nav>
         </aside>
 
-        {/* Mobile stacked sidebar */}
+        {/* Mobile: collapsible posts panel */}
         <div className="lg:hidden mb-4">
-          <aside className="overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-xl p-3 sm:p-4">
-            <div className="mb-3">
-              <div className="relative">
-                <input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Type to search"
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500">{items.length}</span>
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-300 rounded-xl shadow-sm active:scale-[0.99] transition"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-posts-panel"
+          >
+            <span className="font-medium text-gray-700">{mobileOpen ? 'Hide posts' : 'Browse posts'}</span>
+            <span className="text-sm text-gray-500">{items.length}</span>
+          </button>
+
+          {mobileOpen && (
+            <aside id="mobile-posts-panel" className="mt-3 overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-xl p-3">
+              <div className="mb-3">
+                <div className="relative">
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Type to search"
+                    className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500">{items.length}</span>
+                </div>
               </div>
-            </div>
 
-            <div className="mb-3">
-              <label className="block text-xs font-medium text-gray-600 mb-1">Category</label>
-              <select
-                value={activeFilter}
-                onChange={(e) => setActiveFilter(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">All</option>
-                {allCategories.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
-            </div>
-
-            <nav className="space-y-0 divide-y divide-gray-100">
-              {items.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setSelectedId(item.id)}
-                  className={`w-full text-left transition-colors p-2 flex gap-2 items-start hover:bg-gray-50 ${
-                    (selected?.id === item.id) ? 'bg-blue-50/60 border-l-2 border-blue-500' : 'border-l-2 border-transparent'
-                  }`}
+              <div className="mb-3">
+                <label className="block text-xs font-medium text-gray-600 mb-1">Category</label>
+                <select
+                  value={activeFilter}
+                  onChange={(e) => setActiveFilter(e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  {item.coverImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={item.coverImage} alt={item.title} className="w-12 h-12 object-cover rounded-md flex-shrink-0" />
-                  ) : (
-                    <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center text-gray-400 flex-shrink-0">📄</div>
-                  )}
-                  <div className="min-w-0">
-                    <div className="font-semibold text-sm text-gray-900 truncate">{item.title}</div>
-                    {item.description && (
-                      <p className="text-xs text-gray-600 line-clamp-1 mr-[-2px]">{item.description}</p>
+                  <option value="">All</option>
+                  {allCategories.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
+
+              <nav className="space-y-0 divide-y divide-gray-100">
+                {items.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => { setSelectedId(item.id); setMobileOpen(false) }}
+                    className={`w-full text-left transition-colors p-3 flex gap-3 items-start hover:bg-gray-50 ${
+                      (selected?.id === item.id) ? 'bg-blue-50/60 border-l-2 border-blue-500' : 'border-l-2 border-transparent'
+                    }`}
+                  >
+                    {item.coverImage ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={item.coverImage} alt={item.title} loading="lazy" className="w-14 h-14 object-cover rounded-md flex-shrink-0" />
+                    ) : (
+                      <div className="w-14 h-14 rounded-md bg-gray-100 flex items-center justify-center text-gray-400 flex-shrink-0">📄</div>
                     )}
-                    {item.date && (
-                      <div className="text-[11px] text-gray-500 mt-1">{formatDate(item.date)}</div>
-                    )}
-                  </div>
-                </button>
-              ))}
-            </nav>
-          </aside>
+                    <div className="min-w-0">
+                      <div className="font-semibold text-[15px] text-gray-900 truncate">{item.title}</div>
+                      {item.description && (
+                        <p className="text-xs text-gray-600 line-clamp-1 mr-[-2px]">{item.description}</p>
+                      )}
+                      {item.date && (
+                        <div className="text-[11px] text-gray-500 mt-1">{formatDate(item.date)}</div>
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </nav>
+            </aside>
+          )}
         </div>
 
         {/* Main content area shifted right on desktop */}
