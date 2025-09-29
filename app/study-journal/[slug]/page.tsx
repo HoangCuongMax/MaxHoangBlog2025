@@ -175,7 +175,7 @@ export default async function StudyJournalPostPage({ params }: StudyJournalPostP
                 )}
 
                 {/* Content */}
-                <article className="notion-content w-full mt-4">
+                <article suppressHydrationWarning className="notion-content w-full mt-4">
                   <NotionPage recordMap={recordMap} />
                 </article>
 
