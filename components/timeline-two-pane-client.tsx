@@ -148,7 +148,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
   return (
     <div className="w-full">
       {/* Two-pane layout */}
-      <div className="relative">
+      <div className="relative flex flex-col">
         {/* Fixed Sidebar on desktop */}
         <aside className="hidden lg:block fixed bottom-0 left-0 w-[320px] overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-2 sm:p-3" style={{ top: navVisible ? '6rem' : 0 }}>
           <div className="mb-3">
@@ -326,7 +326,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
         </div>
 
         {/* Main content area shifted right on desktop */}
-        <section className="hidden lg:block pb-24 lg:pb-0 lg:pl-[340px]">
+        <section className="hidden lg:block pb-24 lg:pb-0 lg:pl-[340px] max-w-[1024px] mx-auto flex flex-col justify-center items-center">
           {selected && (
             showTOC ? (
               <TOCProvider>
@@ -339,7 +339,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                         <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
                       ) : selected.coverImage ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
+                        <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover -mt-px" />
                       ) : null}
 
                       <div className="p-3 sm:p-5">
@@ -380,7 +380,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
                 ) : selected.coverImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
+                  <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover -mt-px" />
                 ) : null}
 
                 <div className="p-3 sm:p-5">
