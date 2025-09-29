@@ -20,7 +20,7 @@ export default function ProfileLinktree({
   title = 'AI Engineer & Full-Stack Developer',
   intro = 'Building practical AI and web systems. Sharing real-world experiments and learnings.',
   links = [
-    { href: '/study-journal', label: 'AI Journal' },
+    { href: '/study-journal', label: 'Study Journal' },
   ],
 }: ProfileLinktreeProps) {
   return (
