@@ -11,7 +11,7 @@ interface TimelineCardServerProps {
 export default function TimelineCardServer({ item, index }: TimelineCardServerProps) {
   const formatDate = (dateString: string) => {
     if (!dateString) return ''
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('en-US', { timeZone: 'UTC',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
