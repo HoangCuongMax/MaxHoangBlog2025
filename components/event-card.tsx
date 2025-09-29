@@ -42,13 +42,12 @@ export default function EventCard({ event, compact = false }: EventCardProps) {
       if (isNaN(date.getTime())) return ''
 
       // Use a more consistent format to avoid hydration issues
-      const hours = date.getHours()
-      const minutes = date.getMinutes()
-      const ampm = hours >= 12 ? 'PM' : 'AM'
-      const displayHours = hours % 12 || 12
-      const displayMinutes = minutes.toString().padStart(2, '0')
-
-      return `${displayHours}:${displayMinutes} ${ampm}`
+      return date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'UTC'
+      })
     } catch (error) {
       return ''
     }
