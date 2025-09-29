@@ -11,7 +11,7 @@ const siteNav = [
   { href: '/timeline', label: 'Timeline' },
   { href: '/study-journal', label: 'Study Journal' },
   { href: '/projects', label: 'Check List' },
-  { href: 'https://www.notion.so/hoangcuong/27d792d80ba380e59c2af084b131dbc7?v=27d792d80ba381b6a38a000c6d4e70e3', label: 'AI Guide', external: true },
+  { href: '/blog/ai-guide', label: 'AI Guide' },
   { href: '/contact', label: 'Contact' },
 ]
 

@@ -22,6 +22,7 @@ export const DATABASE_IDS = {
   blog: '237792d80ba38063ac29cc15fe37ffbb',
   timeline: '22b792d80ba3808db9e9c129d735ef7b',
   studyJournal: '250792d80ba380aa81c7d0b21421c830', // New Study Journal database
+  aiGuide: '27d792d80ba380e59c2af084b131dbc7',
   events: '252792d80ba38097a898f3d9cae0ad95' // Events List database
 }
 
@@ -213,6 +214,125 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
   } catch (error) {
     console.error('Error fetching blog posts:', error)
+    return []
+  }
+}
+
+// Function to get AI Guide posts using official Notion API
+export async function getAiGuidePosts(): Promise<BlogPost[]> {
+  try {
+    const databaseId = DATABASE_IDS.aiGuide
+
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      sorts: [
+        {
+          property: 'Last Edited',
+          direction: 'descending'
+        }
+      ]
+    })
+
+    const posts: BlogPost[] = []
+
+    for (const page of response.results) {
+      if ('properties' in page) {
+        // Title
+        let title = 'Untitled'
+        const titleProp: any = (page as any).properties['Name'] || (page as any).properties['Title']
+        if (titleProp && titleProp.type === 'title' && Array.isArray(titleProp.title) && titleProp.title.length > 0) {
+          title = titleProp.title.map((t: any) => t.plain_text).join('')
+        }
+
+        // Excerpt/Description
+        let excerpt = ''
+        const excerptProp: any = (page as any).properties['Description'] || (page as any).properties['Excerpt'] || (page as any).properties['Summary']
+        if (excerptProp && excerptProp.type === 'rich_text' && Array.isArray(excerptProp.rich_text) && excerptProp.rich_text.length > 0) {
+          excerpt = excerptProp.rich_text.map((t: any) => t.plain_text).join('')
+        }
+
+        // Publish date
+        let publishDate = ''
+        const dateProp: any = (page as any).properties['Published'] || (page as any).properties['Date'] || (page as any).properties['Created']
+        if (dateProp && dateProp.type === 'date' && dateProp.date) {
+          publishDate = dateProp.date.start
+        }
+
+        // Tags
+        let tags: string[] = []
+        const tagsProp: any = (page as any).properties['Tags']
+        if (tagsProp && tagsProp.type === 'multi_select' && Array.isArray(tagsProp.multi_select)) {
+          tags = tagsProp.multi_select.map((tag: any) => tag.name)
+        }
+
+        // Category
+        const categoryProp: any = (page as any).properties['Category'] || (page as any).properties['Type']
+        if (categoryProp && categoryProp.type === 'select' && categoryProp.select && 'name' in categoryProp.select) {
+          tags.push(categoryProp.select.name)
+        }
+
+        // Status
+        let status = 'published'
+        const statusProp: any = (page as any).properties['Status']
+        if (statusProp && statusProp.type === 'select' && statusProp.select && 'name' in statusProp.select) {
+          status = statusProp.select.name
+        }
+
+        // Featured
+        let isFeatured = false
+        const featuredProp: any = (page as any).properties['Featured']
+        if (featuredProp && featuredProp.type === 'checkbox') {
+          isFeatured = Boolean(featuredProp.checkbox)
+        }
+
+        // Password
+        let password = ''
+        const passwordProp: any = (page as any).properties['Password'] || (page as any).properties['password']
+        if (passwordProp && passwordProp.type === 'rich_text' && Array.isArray(passwordProp.rich_text) && passwordProp.rich_text.length > 0) {
+          password = passwordProp.rich_text.map((t: any) => t.plain_text).join('')
+        }
+
+        // Cover image
+        let coverImage = ''
+        if ('cover' in page && (page as any).cover) {
+          const pageCover: any = (page as any).cover
+          if (pageCover.type === 'external') {
+            coverImage = pageCover.external.url
+          } else if (pageCover.type === 'file') {
+            coverImage = pageCover.file.url
+          }
+        }
+
+        // Read time
+        const readTime = excerpt ? `${Math.max(1, Math.ceil(excerpt.length / 200))} min read` : '2 min read'
+
+        // URL
+        const url = (page as any).url || `https://notion.so/${(page as any).id.replace(/-/g, '')}`
+
+        // Slug
+        const seoSlug = generateSlug(title)
+
+        posts.push({
+          id: (page as any).id,
+          title,
+          excerpt,
+          publishDate,
+          slug: seoSlug || (page as any).id,
+          seoSlug,
+          tags,
+          status,
+          coverImage,
+          isFeatured,
+          readTime,
+          url,
+          password
+        })
+      }
+    }
+
+    return posts
+  } catch (error) {
+    console.error('Error fetching AI Guide posts:', error)
     return []
   }
 }
