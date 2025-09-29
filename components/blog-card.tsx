@@ -24,7 +24,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           <img
             src={post.coverImage}
             alt={`Cover image for blog post: ${post.title}`}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover -mt-px group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
             decoding="async"
           />
