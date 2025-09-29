@@ -16,7 +16,9 @@ export default async function Contact() {
         <PageCoverHeader metadata={metadata} />
 
         <PageContainer noBoxStyling={true}>
-          <NotionPage recordMap={recordMap} />
+          <div suppressHydrationWarning>
+            <NotionPage recordMap={recordMap} />
+          </div>
           <NotionLinkInterceptor />
           
           {/* Tally Form Section */}
