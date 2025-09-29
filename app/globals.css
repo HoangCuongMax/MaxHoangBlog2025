@@ -4,9 +4,8 @@
 
 /* Simple Tiny Dot Pattern */
 body {
-  background-color: #fefefe;
-  background-image: radial-gradient(circle, rgba(156, 163, 175, 0.15) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-color: #ffffff;
+  background-image: none;
 }
 
 /* Custom styles for Notion content */
