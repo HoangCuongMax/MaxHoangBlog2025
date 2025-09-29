@@ -149,7 +149,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
       {/* Two-pane layout */}
       <div className="relative">
         {/* Fixed Sidebar on desktop */}
-        <aside className="hidden lg:block fixed bottom-0 left-0 w-[320px] overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-3 sm:p-4" style={{ top: navVisible ? '6rem' : 0 }}>
+        <aside className="hidden lg:block fixed bottom-0 left-0 w-[320px] overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 p-2 sm:p-3" style={{ top: navVisible ? '6rem' : 0 }}>
           <div className="mb-3">
             <div className="relative">
               <input
@@ -255,7 +255,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <button
                     key={item.id}
                     onClick={() => { setSelectedId(item.id); setMobileOpen(false) }}
-                    className={`w-full text-left transition-colors p-3 flex gap-3 items-start hover:bg-gray-50 ${
+                    className={`w-full text-left transition-colors p-2 flex gap-2 items-start hover:bg-gray-50 ${
                       (selected?.id === item.id) ? 'bg-blue-50/60 border-l-2 border-blue-500' : 'border-l-2 border-transparent'
                     }`}
                   >
@@ -299,23 +299,23 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                         <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
                       ) : null}
 
-                      <div className="p-4 sm:p-6">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">{selected.title}</h2>
+                      <div className="p-3 sm:p-5">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-1">{selected.title}</h2>
                         {selected.date && (
-                          <div className="text-sm text-gray-500 mb-4">{formatDate(selected.date)}</div>
+                          <div className="text-sm text-gray-500 mb-3">{formatDate(selected.date)}</div>
                         )}
                         {selected.description && (
-                          <p className="text-gray-700 leading-relaxed mb-4">{selected.description}</p>
+                          <p className="text-gray-700 leading-relaxed mb-3">{selected.description}</p>
                         )}
                         {(selected.tags && selected.tags.length > 0) && (
-                          <div className="flex flex-wrap gap-2 mb-4">
+                          <div className="flex flex-wrap gap-2 mb-3">
                             {selected.tags.slice(0, 6).map((t, i) => (
                               <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-md">{t}</span>
                             ))}
                           </div>
                         )}
                         {selected.recordMap ? (
-                          <article className={`mt-2 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
+                          <article className={`mt-1 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
                             <NotionPage recordMap={selected.recordMap} />
                           </article>
                         ) : (
@@ -335,23 +335,23 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover" />
                 ) : null}
 
-                <div className="p-4 sm:p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{selected.title}</h2>
+                <div className="p-3 sm:p-5">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-1">{selected.title}</h2>
                   {selected.date && (
-                    <div className="text-sm text-gray-500 mb-4">{formatDate(selected.date)}</div>
+                    <div className="text-sm text-gray-500 mb-3">{formatDate(selected.date)}</div>
                   )}
                   {selected.description && (
-                    <p className="text-gray-700 leading-relaxed mb-4">{selected.description}</p>
+                    <p className="text-gray-700 leading-relaxed mb-3">{selected.description}</p>
                   )}
                   {(selected.tags && selected.tags.length > 0) && (
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       {selected.tags.slice(0, 6).map((t, i) => (
                         <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-md">{t}</span>
                       ))}
                     </div>
                   )}
                   {selected.recordMap ? (
-                    <article className={`mt-2 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
+                    <article className={`mt-1 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
                       <NotionPage recordMap={selected.recordMap} />
                     </article>
                   ) : (
