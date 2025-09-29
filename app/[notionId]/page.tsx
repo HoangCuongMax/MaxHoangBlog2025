@@ -121,7 +121,9 @@ export default async function DynamicNotionPage({ params, searchParams }: Notion
 
         {/* Notion Page Content */}
         <div className="notion-page-wrapper">
-          <NotionPage recordMap={recordMap} />
+          <div suppressHydrationWarning>
+            <NotionPage recordMap={recordMap} />
+          </div>
         </div>
 
 
