@@ -194,7 +194,12 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center text-gray-400 flex-shrink-0">📄</div>
                 )}
                 <div className="min-w-0">
-                  <div className="font-semibold text-sm text-gray-900 truncate">{item.title}</div>
+                  <div className="flex items-center gap-2">
+                    <div className="font-semibold text-sm text-gray-900 truncate flex-1">{item.title}</div>
+                    {item.isFeatured && (
+                      <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-yellow-100 text-yellow-700 border border-yellow-200">★</span>
+                    )}
+                  </div>
                   {item.description && (
                     <p className="text-xs text-gray-600 line-clamp-1 mr-[-2px]">{item.description}</p>
                   )}
@@ -338,6 +343,11 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                       ) : null}
 
                       <div className="p-3 sm:p-5">
+                        {selected.isFeatured && (
+                          <div className="mb-2">
+                            <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
+                          </div>
+                        )}
                         <h2 className="text-2xl font-bold text-gray-900 mb-1">{selected.title}</h2>
                         {selected.date && (
                           <div className="text-sm text-gray-500 mb-3">{formatDate(selected.date)}</div>
@@ -374,6 +384,11 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                 ) : null}
 
                 <div className="p-3 sm:p-5">
+                  {selected.isFeatured && (
+                    <div className="mb-2">
+                      <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
+                    </div>
+                  )}
                   <h2 className="text-2xl font-bold text-gray-900 mb-1">{selected.title}</h2>
                   {selected.date && (
                     <div className="text-sm text-gray-500 mb-3">{formatDate(selected.date)}</div>
