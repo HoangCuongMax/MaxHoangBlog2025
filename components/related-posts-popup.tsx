@@ -101,7 +101,8 @@ export default function RelatedPostsPopup({ relatedPosts, currentPostId }: Relat
                       {new Date(post.publishDate).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
-                        year: 'numeric'
+                        year: 'numeric',
+                        timeZone: 'UTC'
                       })}
                     </p>
                   )}
