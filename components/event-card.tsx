@@ -102,7 +102,7 @@ export default function EventCard({ event, compact = false }: EventCardProps) {
                   {new Date(event.date).toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })}
                 </div>
                 <div className="text-sm font-bold">
-                  {new Date(event.date).getDate()}
+                  {new Date(event.date).toLocaleDateString('en-US', { day: 'numeric', timeZone: 'UTC' })}
                 </div>
               </div>
             ) : (
