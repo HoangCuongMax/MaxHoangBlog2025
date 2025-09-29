@@ -10,7 +10,7 @@ export default function TimelineCard({ item, href }: TimelineCardProps) {
   const formatDate = (dateString?: string) => {
     if (!dateString) return ''
     try {
-      return new Date(dateString).toLocaleDateString('en-US', {
+      return new Date(dateString).toLocaleDateString('en-US', { timeZone: 'UTC',
         year: 'numeric',
         month: 'short',
         day: 'numeric'
