@@ -70,6 +70,12 @@ export default function TimelineCard({ item, href }: TimelineCardProps) {
           </div>
         )}
 
+        {item.isFeatured && !item.coverImage && (
+          <div className="mb-2">
+            <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
+          </div>
+        )}
+
         <h2 className="text-base lg:text-lg font-bold text-gray-900 mb-1 lg:mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-tight">
           <Link href={link} title={`Read: ${item.title}`} className="flex items-start gap-2">
             {(item as any).password && String((item as any).password).trim() !== '' && (
