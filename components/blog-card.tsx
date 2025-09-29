@@ -67,10 +67,10 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
       )}
 
-      <div className="p-4 lg:p-6">
+      <div className="p-3 lg:p-5">
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 lg:gap-2 mb-3 lg:mb-4">
+          <div className="flex flex-wrap gap-1.5 lg:gap-2 mb-2 lg:mb-3">
             {post.tags.slice(0, 2).map((tag, index) => (
               <span
                 key={index}
@@ -88,7 +88,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         )}
 
         {/* Title */}
-        <h2 className="text-base lg:text-lg font-bold text-gray-900 mb-2 lg:mb-3 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-tight">
+        <h2 className="text-base lg:text-lg font-bold text-gray-900 mb-1 lg:mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-tight">
           <Link href={`/blog/${post.seoSlug || post.slug}`} title={`Read: ${post.title}`} className="flex items-start gap-2">
             {/* Password Protection Lock Icon */}
             {post.password && post.password.trim() !== '' && (
@@ -102,13 +102,13 @@ export default function BlogCard({ post }: BlogCardProps) {
 
         {/* Excerpt */}
         {post.excerpt && (
-          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+          <p className="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">
             {post.excerpt}
           </p>
         )}
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           {/* Date */}
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
