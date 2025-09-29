@@ -22,7 +22,9 @@ export default async function Projects() {
             <FloatingTOC leftOffsetClass="left-0" topClass="top-0" />
             <div className="pt-[5px] transition-all duration-300 ease-in-out">
               <ResponsiveContentWrapper>
-                <NotionPage recordMap={recordMap} />
+                <div suppressHydrationWarning>
+                  <NotionPage recordMap={recordMap} />
+                </div>
                 <NotionLinkInterceptor />
               </ResponsiveContentWrapper>
             </div>
