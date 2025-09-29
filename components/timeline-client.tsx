@@ -28,7 +28,7 @@ export default function TimelineClient({ itemsWithContent }: TimelineClientProps
       if (isNaN(date.getTime())) return false
       
       const itemYear = date.getUTCFullYear().toString()
-      const itemMonth = `${itemYear}-${String(date.getMonth() + 1).padStart(2, '0')}`
+      const itemMonth = `${itemYear}-${String(date.getUTCMonth() + 1).padStart(2, '0')}`
       
       // Check year filter
       if (selectedYear && itemYear !== selectedYear) {
