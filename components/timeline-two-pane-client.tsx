@@ -10,6 +10,7 @@ import NotionPage from './notion-page'
 import FloatingTOC from './floating-toc'
 import { TOCProvider } from './toc-context'
 import ResponsiveContentWrapper from './responsive-content-wrapper'
+import TimelineCard from './timeline-card'
 
 interface TimelineTwoPaneClientProps {
   itemsWithContent: (TimelineItem & { recordMap?: any })[]
@@ -206,8 +207,8 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           </nav>
         </aside>
 
-        {/* Mobile: floating bottom Browse posts button + bottom sheet */}
-        <div className="lg:hidden">
+        {/* Mobile: floating bottom Browse posts button + bottom sheet (disabled, replaced by blog-like list) */}
+        <div className="hidden">
           {/* Floating button */}
           <button
             onClick={() => setMobileOpen(v => !v)}
@@ -282,8 +283,45 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           )}
         </div>
 
+        {/* Mobile list like blog */}
+        <div className="lg:hidden mb-4">
+          <div className="px-2">
+            <div className="mb-3">
+              <div className="relative">
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Type to search"
+                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500">{items.length}</span>
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-xs font-medium text-gray-600 mb-1">Category</label>
+              <select
+                value={activeFilter}
+                onChange={(e) => setActiveFilter(e.target.value)}
+                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">All</option>
+                {allCategories.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 px-2">
+            {items.map((item) => (
+              <TimelineCard key={item.id} item={item} href={`/timeline/${item.id}`} />
+            ))}
+          </div>
+        </div>
+
         {/* Main content area shifted right on desktop */}
-        <section className="pb-24 lg:pb-0 lg:pl-[340px]">
+        <section className="hidden lg:block pb-24 lg:pb-0 lg:pl-[340px]">
           {selected && (
             showTOC ? (
               <TOCProvider>
