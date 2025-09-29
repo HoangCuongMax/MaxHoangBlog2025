@@ -27,7 +27,8 @@ export default function EventCard({ event, compact = false }: EventCardProps) {
       return date.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
-        year: 'numeric'
+        year: 'numeric',
+        timeZone: 'UTC'
       })
     } catch (error) {
       return ''
