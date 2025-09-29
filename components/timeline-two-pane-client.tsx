@@ -326,12 +326,12 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
         </div>
 
         {/* Main content area shifted right on desktop */}
-        <section className="hidden lg:block pb-24 lg:pb-0 lg:pl-[340px] max-w-[1200px] mx-auto flex flex-col justify-center items-center">
+        <section className="hidden lg:block pb-24 lg:pb-0 lg:ml-[320px] max-w-[1200px] mr-auto flex flex-col">
           {selected && (
             showTOC ? (
               <TOCProvider>
                 <FloatingTOC key={selected?.id} leftOffsetClass="left-[320px]" topPx={navVisible ? 96 : 0} />
-                <div className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 transition-all duration-300 ease-in-out max-w-[1024px] mx-auto flex flex-col items-center justify-center">
+                <div className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 transition-all duration-300 ease-in-out max-w-[1200px] mr-auto">
                   <ResponsiveContentWrapper>
                     <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
                       {/* Cover or gallery (optional) */}
