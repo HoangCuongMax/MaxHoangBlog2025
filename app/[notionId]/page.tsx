@@ -26,7 +26,7 @@ function getPageContext(from?: string): { name: string; path: string } | null {
   if (!from) return null
 
   const contextMap = {
-    '/projects': { name: 'Projects', path: '/projects' },
+    '/projects': { name: 'Check List', path: '/projects' },
     '/timeline': { name: 'Timeline', path: '/timeline' },
     '/blog': { name: 'Blog', path: '/blog' },
     '/contact': { name: 'Contact', path: '/contact' }
