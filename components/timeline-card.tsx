@@ -45,6 +45,16 @@ export default function TimelineCard({ item, href }: TimelineCardProps) {
               </div>
             </div>
           )}
+          {(item as any).password && String((item as any).password).trim() !== '' && (
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+              <div className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs font-medium rounded-full shadow-sm">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span className="hidden sm:inline">Premium</span>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -62,6 +72,11 @@ export default function TimelineCard({ item, href }: TimelineCardProps) {
 
         <h2 className="text-base lg:text-lg font-bold text-gray-900 mb-1 lg:mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors leading-tight">
           <Link href={link} title={`Read: ${item.title}`} className="flex items-start gap-2">
+            {(item as any).password && String((item as any).password).trim() !== '' && (
+              <svg className="w-4 h-4 mt-1 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            )}
             <span className="flex-1">{item.title}</span>
           </Link>
         </h2>
