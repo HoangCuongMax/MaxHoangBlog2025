@@ -363,7 +363,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                           </div>
                         )}
                         {selected.recordMap ? (
-                          <article className={`mt-1 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
+                          <article suppressHydrationWarning className={`mt-1 notion-content ${useGallery && images.length > 0 ? 'has-gallery' : ''}`}>
                             <NotionPage recordMap={selected.recordMap} />
                           </article>
                         ) : (
