@@ -122,7 +122,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                           {new Date(currentPost.publishDate).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
-                            day: 'numeric'
+                            day: 'numeric',
+                            timeZone: 'UTC'
                           })}
                         </span>
                       )}
@@ -207,10 +208,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     {currentPost.publishDate && (
                       <span>
                         {new Date(currentPost.publishDate).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            timeZone: 'UTC'
+                          })}
                       </span>
                     )}
                     {currentPost.readTime && (
