@@ -38,7 +38,7 @@ export default async function Blog({ searchParams }: { searchParams: SearchParam
     return (
       <PageContainer fullscreen={true}>
         <style>{`@media (min-width:1024px){footer{padding-left:340px}} .page-container > div{padding:0!important}`}</style>
-        <TimelineTwoPaneClient itemsWithContent={itemsWithContent as any} useGallery={false} showTOC={true} />
+        <TimelineTwoPaneClient itemsWithContent={itemsWithContent as any} useGallery={false} showTOC={false} />
       </PageContainer>
     )
   } catch (error) {
