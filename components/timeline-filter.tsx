@@ -27,7 +27,7 @@ export default function TimelineFilter({
       if (item.date) {
         const date = new Date(item.date)
         if (!isNaN(date.getTime())) {
-          yearSet.add(date.getFullYear().toString())
+          yearSet.add(date.getUTCFullYear().toString())
           const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
           const monthName = date.toLocaleDateString('en-US', { month: 'long', timeZone: 'UTC' })
           monthSet.add(`${monthKey}|${monthName}`)
