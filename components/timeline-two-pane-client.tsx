@@ -206,11 +206,12 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           </nav>
         </aside>
 
-        {/* Mobile: collapsible posts panel */}
-        <div className="lg:hidden mb-4">
+        {/* Mobile: floating bottom Browse posts button + bottom sheet */}
+        <div className="lg:hidden">
+          {/* Floating button */}
           <button
             onClick={() => setMobileOpen(v => !v)}
-            className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-300 rounded-xl shadow-sm active:scale-[0.99] transition"
+            className="fixed bottom-[calc(16px+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-40 w-[min(92%,28rem)] px-4 py-3 rounded-full shadow-md border border-gray-300 bg-white/95 backdrop-blur flex items-center justify-between"
             aria-expanded={mobileOpen}
             aria-controls="mobile-posts-panel"
           >
@@ -218,8 +219,11 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
             <span className="text-sm text-gray-500">{items.length}</span>
           </button>
 
+          {/* Bottom sheet */}
           {mobileOpen && (
-            <aside id="mobile-posts-panel" className="mt-3 overflow-y-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-xl p-3">
+            <div className="fixed inset-0 z-40 lg:hidden">
+              <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
+              <aside id="mobile-posts-panel" className="absolute left-0 right-0 bottom-0 max-h-[75vh] rounded-t-2xl border-t border-gray-200 bg-white/95 backdrop-blur p-3 shadow-2xl" onClick={(e)=>e.stopPropagation()}>
               <div className="mb-3">
                 <div className="relative">
                   <input
@@ -273,12 +277,13 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   </button>
                 ))}
               </nav>
-            </aside>
+              </aside>
+            </div>
           )}
         </div>
 
         {/* Main content area shifted right on desktop */}
-        <section className="lg:pl-[340px]">
+        <section className="pb-24 lg:pb-0 lg:pl-[340px]">
           {selected && (
             showTOC ? (
               <TOCProvider>
