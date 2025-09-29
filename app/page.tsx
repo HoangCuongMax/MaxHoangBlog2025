@@ -19,7 +19,9 @@ export default async function Home() {
           <ProfileLinktree />
         </div>
         <PageContainer noBoxStyling={true}>
-          <NotionPage recordMap={recordMap} />
+          <div suppressHydrationWarning>
+            <NotionPage recordMap={recordMap} />
+          </div>
           <NotionLinkInterceptor />
         </PageContainer>
       </>
