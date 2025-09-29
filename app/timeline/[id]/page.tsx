@@ -289,7 +289,7 @@ export default async function TimelineDetailPage({ params }: TimelineDetailPageP
         )}
 
         {/* Timeline Content */}
-        <article className={`notion-content ${extractedImages.length > 0 ? 'has-gallery' : ''}`}>
+        <article suppressHydrationWarning className={`notion-content ${extractedImages.length > 0 ? 'has-gallery' : ''}`}>
           <NotionPage recordMap={recordMap} />
         </article>
 
