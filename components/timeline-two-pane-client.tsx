@@ -333,7 +333,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                 <FloatingTOC key={selected?.id} leftOffsetClass="left-[320px]" topPx={navVisible ? 96 : 0} />
                 <div className="pt-4 sm:pt-6 md:pt-8 lg:pt-10 transition-all duration-300 ease-in-out max-w-[1200px] mr-auto">
                   <ResponsiveContentWrapper>
-                    <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
+                    <article className="">
                       {/* Cover or gallery (optional) */}
                       {useGallery && images.length > 0 ? (
                         <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
@@ -342,7 +342,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                         <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover -mt-px" />
                       ) : null}
 
-                      <div>
+                      <div className="p-[25px]">
                         {selected.isFeatured && (
                           <div className="mb-2">
                             <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
@@ -375,7 +375,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                 </div>
               </TOCProvider>
             ) : (
-              <article className="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-gray-200 rounded-2xl overflow-hidden">
+              <article className="">
                 {useGallery && images.length > 0 ? (
                   <PhotoGallerySlider images={images} title={selected.title} isFullScreen={false} />
                 ) : selected.coverImage ? (
@@ -383,7 +383,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                   <img src={selected.coverImage} alt={selected.title} className="w-full h-auto object-cover -mt-px" />
                 ) : null}
 
-                <div>
+                <div className="p-[25px]">
                   {selected.isFeatured && (
                     <div className="mb-2">
                       <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">Featured</span>
