@@ -190,7 +190,7 @@ export default function FloatingTOC({ leftOffsetClass = 'left-8', topPx = 96, to
           </button>
         </div>
       ) : (
-        <div className="h-full overflow-y-auto overflow-x-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 py-3 px-[9px] w-[281px] mr-[17px] flex flex-col">
+        <div className="h-full overflow-y-auto overflow-x-auto bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-r border-gray-200 py-4 px-4 w-[320px] flex flex-col">
           <div className="flex items-center justify-between mb-2">
             <div className="text-[11px] uppercase tracking-wide text-gray-500 font-semibold">Contents</div>
             <button
