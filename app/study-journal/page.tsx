@@ -32,6 +32,7 @@ export default async function StudyJournal({ searchParams }: { searchParams: Sea
           tags: p.tags || [],
           coverImage: p.coverImage || '',
           isFeatured: Boolean(p.isFeatured),
+          password: (p as any).password || '',
           recordMap
         }
       })
