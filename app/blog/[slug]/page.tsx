@@ -238,7 +238,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           {/* Blog Post Content - Clean Notion Style - Match cover photo width */}
-          <article className="notion-content w-full mt-4 p-[25px]">
+          <article suppressHydrationWarning className="notion-content w-full mt-4 p-[25px]">
             <NotionPage recordMap={recordMap} />
           </article>
 
