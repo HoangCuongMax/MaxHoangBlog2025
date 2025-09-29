@@ -99,7 +99,7 @@ export default function EventCard({ event, compact = false }: EventCardProps) {
                   : 'bg-gray-50 text-gray-600 border-gray-200'
               }`}>
                 <div className="text-xs font-medium uppercase tracking-wide">
-                  {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                  {new Date(event.date).toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })}
                 </div>
                 <div className="text-sm font-bold">
                   {new Date(event.date).getDate()}
