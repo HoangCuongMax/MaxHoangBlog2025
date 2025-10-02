@@ -23,6 +23,28 @@ export const DATABASE_IDS = {
   timeline: '22b792d80ba3808db9e9c129d735ef7b',
   studyJournal: '250792d80ba380aa81c7d0b21421c830', // New Study Journal database
   aiGuide: '27d792d80ba380e59c2af084b131dbc7',
+  events: '252792d80ba38097a898f3d9cae0ad95'
+}
+
+// Events interface
+export interface Event {
+  id: string
+  title: string
+  description?: string
+  date?: string
+  endDate?: string
+  location?: string
+  category?: string
+  tags?: string[]
+  status?: string
+  coverImage?: string
+  isFeatured?: boolean
+  url?: string
+  isUpcoming?: boolean
+  icon?: string
+  content?: any
+  startDate?: string
+  progress?: number
 }
 
 // Blog post interface
