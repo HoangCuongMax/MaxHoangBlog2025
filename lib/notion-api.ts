@@ -338,6 +338,28 @@ export async function getAiGuidePosts(): Promise<BlogPost[]> {
   }
 }
 
+// Function to get events using official Notion API
+export async function getEvents(): Promise<Event[]> {
+  try {
+    // Events DB removed during cleanup; return empty list to avoid runtime errors
+    return []
+  } catch (error) {
+    console.error('Error fetching events:', error)
+    return []
+  }
+}
+
+// Function to get event content
+export async function getEventContent(eventId: string) {
+  try {
+    // Stub: return empty object for event content
+    return {}
+  } catch (error) {
+    console.error('Error fetching event content:', error)
+    throw error
+  }
+}
+
 // Function to get timeline items using official Notion API
 export async function getTimelineItems(): Promise<TimelineItem[]> {
   try {
