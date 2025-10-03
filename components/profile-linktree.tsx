@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-import Link from 'next/link'
-
 interface LinkItem {
   href: string
   label: string
