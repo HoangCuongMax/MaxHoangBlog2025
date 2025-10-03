@@ -21,6 +21,7 @@ export default function ProfileLinktree({
   intro = 'Building practical AI and web systems. Sharing real-world experiments and learnings.',
   links = [
     { href: '/study-journal', label: 'Study Journal' },
+    { href: '/blog/ai-guide', label: 'AI Guide' },
   ],
 }: ProfileLinktreeProps) {
   return (
