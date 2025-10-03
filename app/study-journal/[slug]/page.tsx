@@ -4,11 +4,11 @@ import Link from 'next/link'
 import dynamicImport from 'next/dynamic'
 import { generateMetaTags } from '../../../lib/seo-utils'
 import ErrorFallback from '../../../components/error-fallback'
+import { TOCProvider } from '../../../components/toc-context'
 
 // Dynamically import client components with ssr: false to ensure they are treated as client boundaries
 const NotionPage = dynamicImport(() => import('../../../components/notion-page').then(mod => mod.default), { ssr: false })
 const PasswordProtectedBlogPost = dynamicImport(() => import('../../../components/password-protected-blog-post').then(mod => mod.default), { ssr: false })
-const TOCProvider = dynamicImport(() => import('../../../components/toc-context').then(mod => mod.TOCProvider || mod.default), { ssr: false })
 const FloatingTOC = dynamicImport(() => import('../../../components/floating-toc').then(mod => mod.default), { ssr: false })
 const ResponsiveContentWrapper = dynamicImport(() => import('../../../components/responsive-content-wrapper').then(mod => mod.default), { ssr: false })
 
@@ -23,19 +23,6 @@ interface StudyJournalPostPageProps {
 
 export default async function StudyJournalPostPage({ params }: StudyJournalPostPageProps) {
   try {
-    // Debug: log component types to detect undefined components causing "Unsupported Server Component type" errors
-    try {
-      // eslint-disable-next-line no-console
-      console.log('Component types:', {
-        TOCProviderType: typeof TOCProvider,
-        FloatingTOCType: typeof FloatingTOC,
-        ResponsiveContentWrapperType: typeof ResponsiveContentWrapper,
-        NotionPageType: typeof NotionPage,
-        PasswordProtectedBlogPostType: typeof PasswordProtectedBlogPost,
-      })
-    } catch (e) {
-      // ignore
-    }
     // Get all study journal posts
     const posts = await getStudyJournalPosts()
     
@@ -62,11 +49,11 @@ export default async function StudyJournalPostPage({ params }: StudyJournalPostP
     // Check if post is password protected
     if (post.password && post.password.trim() !== '') {
       return (
-        <PasswordProtectedBlogPost
-          post={post}
-          password={post.password}
-          recordMap={recordMap}
-        />
+        <PasswordProtectedBlogPost post={post}>
+          <article suppressHydrationWarning className="notion-content w-full mt-4 p-[25px]">
+            <NotionPage recordMap={recordMap} />
+          </article>
+        </PasswordProtectedBlogPost>
       )
     }
 
