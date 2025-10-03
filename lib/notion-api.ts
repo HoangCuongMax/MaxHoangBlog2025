@@ -567,35 +567,38 @@ export async function getStudyJournalPosts(): Promise<StudyJournalPost[]> {
         let tags: string[] = []
         const tagsProperty = page.properties['Tags']
         if (tagsProperty && tagsProperty.type === 'multi_select') {
-          tags = tagsProperty.multi_select.map((tag: any) => tag.name)
+          const multi = (tagsProperty as any).multi_select
+          if (Array.isArray(multi)) {
+            tags = multi.map((tag: any) => tag.name)
+          }
         }
 
         // Extract category
         let category = ''
         const categoryProperty = page.properties['Category'] || page.properties['Type']
-        if (categoryProperty && categoryProperty.type === 'select' && categoryProperty.select) {
-          category = categoryProperty.select.name
+        if (categoryProperty && categoryProperty.type === 'select' && (categoryProperty as any).select) {
+          category = (categoryProperty as any).select.name
         }
 
         // Extract status
         let status = 'Published'
         const statusProperty = page.properties['Status']
-        if (statusProperty && statusProperty.type === 'select' && statusProperty.select) {
-          status = statusProperty.select.name
+        if (statusProperty && statusProperty.type === 'select' && (statusProperty as any).select) {
+          status = (statusProperty as any).select.name
         }
 
         // Extract published date
         let publishedDate = ''
         const publishedProperty = page.properties['Published'] || page.properties['Date'] || page.properties['Created']
-        if (publishedProperty && publishedProperty.type === 'date' && publishedProperty.date) {
-          publishedDate = publishedProperty.date.start
+        if (publishedProperty && publishedProperty.type === 'date' && (publishedProperty as any).date) {
+          publishedDate = (publishedProperty as any).date.start
         }
 
         // Extract featured status
         let isFeatured = false
         const featuredProperty = page.properties['Featured']
         if (featuredProperty && featuredProperty.type === 'checkbox') {
-          isFeatured = featuredProperty.checkbox
+          isFeatured = Boolean((featuredProperty as any).checkbox)
         }
 
         // Extract password
