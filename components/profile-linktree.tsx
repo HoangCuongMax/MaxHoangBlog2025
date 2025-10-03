@@ -74,6 +74,12 @@ export default function ProfileLinktree({
 
             {/* Right panel */}
             <div className="md:w-7/12 px-4 pb-8 md:py-10 md:px-8">
+              {/* Highlighted primary CTA */}
+              <div className="mb-4">
+                <Link href="/projects" className="w-full inline-flex items-center justify-center h-14 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold shadow hover:opacity-95">
+                  My 100 Check List
+                </Link>
+              </div>
               <ul className="space-y-3">
                 {links.map((l) => {
                   const Button = l.external ? 'a' : (Link as any)
