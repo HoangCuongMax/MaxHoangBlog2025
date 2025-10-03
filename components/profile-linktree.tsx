@@ -22,6 +22,7 @@ export default function ProfileLinktree({
   links = [
     { href: '/study-journal', label: 'Study Journal' },
     { href: '/blog/ai-guide', label: 'AI Guide' },
+    { href: 'https://kriol.maxhoang.com.au/', label: 'Kriol Translation App', external: true },
   ],
 }: ProfileLinktreeProps) {
   return (
