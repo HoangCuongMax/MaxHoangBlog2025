@@ -56,6 +56,7 @@ export interface BlogPost {
   slug?: string
   seoSlug?: string
   tags?: string[]
+  category?: string
   status?: string
   coverImage?: string
   isFeatured?: boolean
