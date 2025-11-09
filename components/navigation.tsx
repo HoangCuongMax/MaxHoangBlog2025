@@ -1,7 +1,5 @@
 "use client"
 
-"use client"
-
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -16,11 +14,7 @@ const siteNav = [
 ]
 
 export default function Navigation() {
-  const [searchOpen, setSearchOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [query, setQuery] = useState('')
-  const [results, setResults] = useState<Array<{ title: string; url: string; type: string; excerpt?: string }>>([])
-  const [loading, setLoading] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 
@@ -36,28 +30,8 @@ export default function Navigation() {
   }, [lastScrollY])
 
   useEffect(() => {
-    let active = true
-    const doSearch = async () => {
-      if (!query.trim()) { setResults([]); return }
-      setLoading(true)
-      try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
-        const data = await res.json()
-        if (active) setResults(data.results || [])
-      } catch {
-        if (active) setResults([])
-      } finally {
-        if (active) setLoading(false)
-      }
-    }
-    const id = setTimeout(doSearch, 250)
-    return () => { active = false; clearTimeout(id) }
-  }, [query])
-
-  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); setSearchOpen(true) }
-      if (e.key === 'Escape') { setSearchOpen(false); setMobileOpen(false) }
+      if (e.key === 'Escape') { setMobileOpen(false) }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
