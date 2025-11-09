@@ -6,7 +6,6 @@ import ErrorFallback from '../components/error-fallback'
 const NotionLinkInterceptor = dynamic(() => import('../components/notion-link-interceptor'), { ssr: false })
 import PageCoverHeader from '../components/page-cover-header'
 import ProfileLinktree from '../components/profile-linktree'
-import AmbassadorProgramSection from '../components/ambassador-program-section'
 import { Metadata } from 'next'
 
 export default async function Home() {
