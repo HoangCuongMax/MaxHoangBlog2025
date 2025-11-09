@@ -130,40 +130,6 @@ export default function Navigation() {
           )}
         </div>
       </div>
-
-      {searchOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-24 bg-black/40 backdrop-blur-sm" onClick={() => setSearchOpen(false)}>
-          <div className="w-full max-w-2xl mx-4 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-zinc-500">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg>
-              <input
-                autoFocus
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search posts, timeline, study journal..."
-                className="flex-1 bg-transparent outline-none text-zinc-900 dark:text-zinc-100 placeholder-zinc-400"
-              />
-              <kbd className="text-xs text-zinc-500">Esc</kbd>
-            </div>
-            <div className="max-h-80 overflow-y-auto divide-y divide-gray-100 dark:divide-gray-800">
-              {loading ? (
-                <div className="p-4 text-sm text-zinc-500">Searching…</div>
-              ) : results.length === 0 ? (
-                <div className="p-4 text-sm text-zinc-500">No results</div>
-              ) : (
-                results.map((r, i) => (
-                  <Link key={i} href={r.url} onClick={() => setSearchOpen(false)} className="block px-4 py-3 hover:bg-gray-50 dark:hover:bg-white/5">
-                    <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{r.title}</div>
-                    <div className="text-xs text-zinc-500">{r.type}{r.excerpt ? ' • ' + r.excerpt : ''}</div>
-                  </Link>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </nav>
   )
 }
