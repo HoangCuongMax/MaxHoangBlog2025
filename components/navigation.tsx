@@ -69,16 +69,6 @@ export default function Navigation() {
 
             {/* Right actions */}
             <div className="ml-auto hidden md:flex items-center gap-3">
-              <button
-                aria-label="search-button"
-                onClick={() => setSearchOpen(true)}
-                title="Search (⌘K)"
-                className="h-11 w-11 inline-flex items-center justify-center rounded-full border border-gray-200 text-zinc-700 hover:bg-gray-50"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-              </button>
               <a
                 aria-label="LinkedIn profile"
                 href="https://www.linkedin.com/in/maxhoangau/"
