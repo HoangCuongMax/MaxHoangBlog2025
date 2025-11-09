@@ -18,7 +18,6 @@ export default async function Home() {
         <div className="mt-4 sm:mt-6 md:mt-8">
           <ProfileLinktree />
         </div>
-        <AmbassadorProgramSection />
         <PageContainer noBoxStyling={true}>
           <div suppressHydrationWarning>
             <NotionPage recordMap={recordMap} />
