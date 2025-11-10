@@ -84,7 +84,7 @@ export default function RootLayout({
       <head>
       </head>
       <body className="antialiased min-h-screen flex flex-col">
-        {FooterNavigation ? <FooterNavigation /> : (console.error('FooterNavigation component is undefined'), null)}
+        {TwoLevelNavigation ? <TwoLevelNavigation /> : (console.error('TwoLevelNavigation component is undefined'), null)}
         <main className="flex-grow" role="main">
           {children}
         </main>
