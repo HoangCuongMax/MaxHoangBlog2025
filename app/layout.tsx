@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import TwoLevelNavigation from '../components/two-level-navigation'
-import SecondaryNavigation from '../components/secondary-navigation'
 import Footer from '../components/Footer'
 import ContactPopup from '../components/contact-popup'
 
@@ -86,7 +85,6 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen flex flex-col">
         {TwoLevelNavigation ? <TwoLevelNavigation /> : (console.error('TwoLevelNavigation component is undefined'), null)}
-        {SecondaryNavigation ? <SecondaryNavigation /> : (console.error('SecondaryNavigation component is undefined'), null)}
         <main className="flex-grow" role="main">
           {children}
         </main>
