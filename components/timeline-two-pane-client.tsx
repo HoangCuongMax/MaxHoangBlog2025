@@ -100,11 +100,11 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           >
             {/* Cover Image */}
             {item.coverImage && (
-              <div className="relative h-64 overflow-hidden bg-gray-100">
+              <div className="relative w-full aspect-[1920/1024] overflow-hidden bg-gray-100">
                 <img
                   src={item.coverImage}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-300"
                 />
                 {item.isFeatured && (
                   <div className="absolute top-3 right-3">
