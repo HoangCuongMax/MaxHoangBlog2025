@@ -738,6 +738,26 @@ main {
   animation: scrollUpFlow 40s linear infinite;
 }
 
+/* Scroll Down Hint Animation */
+@keyframes scrollHint {
+  0%, 20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+  80%, 100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.scroll-hint {
+  animation: scrollHint 2s ease-in-out infinite;
+}
+
 /* TOC Desktop Layout System */
 .toc-desktop-layout {
   width: 100%;
