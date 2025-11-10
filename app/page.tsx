@@ -1,5 +1,4 @@
 import HomeHero from '../components/home-hero'
-import HomeAbout from '../components/home-about'
 import HomeProjects from '../components/home-projects'
 import HomeTalks from '../components/home-talks'
 import HomeBlogPreview from '../components/home-blog-preview'
@@ -11,7 +10,6 @@ export default function Home() {
   return (
     <main>
       <HomeHero />
-      <HomeAbout />
       <HomeProjects />
       <HomeTalks />
       <HomeBlogPreview />
