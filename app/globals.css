@@ -724,6 +724,50 @@ main {
   }
 }
 
+/* Floating Animation - Water-like flow */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animate {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-animate-delayed-1 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.float-animate-delayed-2 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.float-animate-delayed-3 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.float-animate-delayed-4 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.float-animate-delayed-5 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.float-animate-delayed-6 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
 /* TOC Desktop Layout System */
 .toc-desktop-layout {
   width: 100%;
