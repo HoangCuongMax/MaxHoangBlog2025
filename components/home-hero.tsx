@@ -52,7 +52,7 @@ export default function HomeHero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/projects"
-                className="inline-block px-8 py-3 bg-[rgb(216,0,92)] text-white font-semibold hover:bg-[rgb(196,0,72)] transition-all transform hover:scale-105 text-center"
+                className="inline-block px-10 py-4 bg-[rgb(216,0,92)] text-white font-bold hover:bg-[rgb(196,0,72)] transition-all transform hover:scale-105 text-center text-xl"
               >
                 View My Projects
               </Link>
@@ -60,7 +60,7 @@ export default function HomeHero() {
                 href="https://www.youtube.com/@maxhoang"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-8 py-3 bg-white bg-opacity-20 backdrop-blur-sm border-2 border-white text-white font-semibold hover:bg-opacity-30 transition-all text-center"
+                className="inline-block px-10 py-4 bg-white bg-opacity-20 backdrop-blur-sm border-2 border-white text-white font-bold hover:bg-opacity-30 transition-all text-center text-xl"
               >
                 Watch My Talks
               </a>
