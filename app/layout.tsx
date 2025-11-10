@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import TwoLevelNavigation from '../components/two-level-navigation'
+import SecondaryNavigation from '../components/secondary-navigation'
 import Footer from '../components/Footer'
 import ContactPopup from '../components/contact-popup'
 
