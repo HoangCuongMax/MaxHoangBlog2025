@@ -5,6 +5,10 @@ import Link from 'next/link'
 export default function HomeHero() {
   const images = [
     {
+      url: 'https://cdn.builder.io/api/v1/image/assets%2Fb646c680cb1245e8b61dacef2f73503f%2F6cd5e091233448d3ab5388c2d048a726?format=webp&width=800',
+      alt: 'Max with Award',
+    },
+    {
       url: 'https://cdn.builder.io/api/v1/image/assets%2Fb646c680cb1245e8b61dacef2f73503f%2Fd47f99eee28b40cea5e616fc0deb4fc2?format=webp&width=800',
       alt: 'Max Speaking at Event',
     },
