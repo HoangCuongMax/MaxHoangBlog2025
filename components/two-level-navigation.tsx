@@ -1,18 +1,5 @@
 'use client'
 
-import Link from 'next/link'
-import { useState } from 'react'
-
-const siteNav = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/timeline', label: 'Timeline' },
-  { href: '/study-journal', label: 'Study Journal' },
-  { href: '/projects', label: 'Check List' },
-  { href: '/blog/ai-guide', label: 'AI Guide' },
-  { href: '/contact', label: 'Contact' },
-]
-
 export default function TwoLevelNavigation() {
   return (
     <nav
