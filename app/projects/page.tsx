@@ -60,8 +60,32 @@ export default async function Projects() {
   } catch (error) {
     console.error('Error loading projects page:', error)
     return (
-      <div className="min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center">
-        <div className="w-full max-w-4xl bg-white rounded-xl shadow-2xl p-8 sm:p-10">
+      <div className="relative min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center overflow-hidden">
+        {/* Scrolling Photo Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="scroll-flow-container w-full h-full">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full" style={{ gridAutoRows: 'minmax(200px, 1fr)' }}>
+              {images.map((img, i) => (
+                <div key={`first-${i}`} className="overflow-hidden">
+                  <img src={img} alt="" className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full" style={{ gridAutoRows: 'minmax(200px, 1fr)' }}>
+              {images.map((img, i) => (
+                <div key={`second-${i}`} className="overflow-hidden">
+                  <img src={img} alt="" className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+        {/* Content Box */}
+        <div className="relative w-full max-w-4xl bg-white rounded-xl shadow-2xl p-8 sm:p-10 z-10">
           <ErrorFallback title="100 Checklist" />
         </div>
       </div>
