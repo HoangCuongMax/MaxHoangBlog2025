@@ -49,11 +49,16 @@ export default async function Projects() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
         {/* Content Box */}
-        <div className="relative w-full max-w-4xl bg-white rounded-xl shadow-2xl p-8 sm:p-10 lg:p-12 z-10">
-          <div suppressHydrationWarning>
-            <NotionPage recordMap={recordMap} />
+        <div className="relative w-full max-w-4xl z-10">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8 text-center drop-shadow-lg">
+            My 100 Checklists
+          </h1>
+          <div className="bg-white rounded-xl shadow-2xl p-8 sm:p-10 lg:p-12">
+            <div suppressHydrationWarning>
+              <NotionPage recordMap={recordMap} />
+            </div>
+            <NotionLinkInterceptor />
           </div>
-          <NotionLinkInterceptor />
         </div>
       </div>
     )
