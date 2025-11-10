@@ -22,7 +22,7 @@ export default function HomeContact() {
   }
 
   return (
-    <section className="py-24 md:py-40 bg-gradient-to-b from-gray-900 to-black text-white">
+    <section className="py-20 md:py-32 bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold mb-8">Let's Collaborate</h2>

@@ -54,7 +54,7 @@ const links = [
 
 export default function HomeLinktree() {
   return (
-    <section className="py-24 md:py-40 bg-gray-900">
+    <section className="py-20 md:py-32 bg-gray-900">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">Find Me Online</h2>
