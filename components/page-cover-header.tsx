@@ -10,7 +10,7 @@ export default function PageCoverHeader({ metadata }: PageCoverHeaderProps) {
   }
 
   return (
-    <div className="relative w-full h-48 sm:h-64 md:h-80 mb-4 sm:mb-6 md:mb-8">
+    <div className="relative w-full h-64 sm:h-96 md:h-[28rem] mb-4 sm:mb-6 md:mb-8">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${metadata.cover})` }}
