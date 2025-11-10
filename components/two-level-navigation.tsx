@@ -26,7 +26,7 @@ export default function TwoLevelNavigation() {
       </h2>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link
             href="/"
