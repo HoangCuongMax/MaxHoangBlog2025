@@ -100,7 +100,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
           >
             {/* Cover Image */}
             {item.coverImage && (
-              <div className="relative h-48 overflow-hidden bg-gray-100">
+              <div className="relative h-64 overflow-hidden bg-gray-100">
                 <img
                   src={item.coverImage}
                   alt={item.title}
