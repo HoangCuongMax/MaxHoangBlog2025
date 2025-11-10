@@ -1,7 +1,7 @@
 import { getBlogPosts, getBlogPost } from '../../lib/notion-api'
 import PageContainer from '../../components/page-container'
 import ErrorFallback from '../../components/error-fallback'
-import TimelineTwoPaneClient from '../../components/timeline-two-pane-client'
+import BlogListClient from '../../components/blog-list-client'
 
 // Revalidate every hour
 export const revalidate = 3600
@@ -36,9 +36,9 @@ export default async function Blog({ searchParams }: { searchParams: SearchParam
     )
 
     return (
-      <PageContainer fullscreen={true}>
-        <style>{`@media (min-width:1024px){footer{padding-left:340px}} .page-container > div{padding:0!important}`}</style>
-        <TimelineTwoPaneClient itemsWithContent={itemsWithContent as any} useGallery={false} showTOC={false} />
+      <PageContainer noBoxStyling={true}>
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-12">Blog & Articles</h1>
+        <BlogListClient itemsWithContent={itemsWithContent as any} />
       </PageContainer>
     )
   } catch (error) {
