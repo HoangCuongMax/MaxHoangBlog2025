@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
           {/* Left Column - About */}
           <div className="flex flex-col items-center md:items-start">
-            <div className="w-20 h-20 rounded-full overflow-hidden mb-4 ring-4 ring-white ring-opacity-20">
+            <div className="w-20 h-20 overflow-hidden mb-4 ring-4 ring-white ring-opacity-20">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F177dbc27b0d5446d94f5f3c432862cca%2Fd534d74ce56142f9ac8e2a37b53a75e6?format=webp&width=800"
                 alt="Max Hoang"
@@ -38,25 +38,25 @@ export default function Footer() {
             <div className="flex flex-col gap-3 w-full max-w-xs">
               <a
                 href="/"
-                className="inline-block px-4 py-2 rounded-full border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
+                className="inline-block px-4 py-2 border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
               >
                 Home
               </a>
               <a
                 href="/projects"
-                className="inline-block px-4 py-2 rounded-full border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
+                className="inline-block px-4 py-2 border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
               >
                 My 100 Check List
               </a>
               <a
                 href="/blog"
-                className="inline-block px-4 py-2 rounded-full border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
+                className="inline-block px-4 py-2 border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
               >
                 Blog
               </a>
               <a
                 href="/study-journal"
-                className="inline-block px-4 py-2 rounded-full border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
+                className="inline-block px-4 py-2 border-2 border-white text-white font-semibold text-center hover:bg-[rgb(216,0,92)] hover:border-[rgb(216,0,92)] transition-all duration-300"
               >
                 Study Journal
               </a>
@@ -67,21 +67,21 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-end">
             <h4 className="text-sm font-bold mb-6 text-white opacity-90">CONNECT</h4>
             
-            <a 
-              href="https://www.linkedin.com/in/hoangngoccuong/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/hoangngoccuong/"
+              target="_blank"
               rel="noopener noreferrer"
-              className="inline-block w-full max-w-xs px-6 py-3 bg-[rgb(216,0,92)] text-white rounded-full hover:bg-white hover:text-[rgb(51,51,116)] transition-all duration-300 font-bold text-center mb-6"
+              className="inline-block w-full max-w-xs px-6 py-3 bg-[rgb(216,0,92)] text-white hover:bg-white hover:text-[rgb(51,51,116)] transition-all duration-300 font-bold text-center mb-6"
             >
               Connect on LinkedIn
             </a>
 
             <div className="flex items-center justify-center gap-4 mb-6">
-              <a 
-                href="https://www.linkedin.com/in/hoangngoccuong/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/hoangngoccuong/"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
+                className="p-2 bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -89,11 +89,11 @@ export default function Footer() {
                 </svg>
               </a>
 
-              <a 
-                href="https://github.com/HoangCuongMax" 
-                target="_blank" 
+              <a
+                href="https://github.com/HoangCuongMax"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
+                className="p-2 bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -101,11 +101,11 @@ export default function Footer() {
                 </svg>
               </a>
 
-              <a 
-                href="https://wa.me/61405272278" 
-                target="_blank" 
+              <a
+                href="https://wa.me/61405272278"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
+                className="p-2 bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@ export default function Footer() {
 
               <a
                 href="mailto:hoangngoccuong1414@gmail.com"
-                className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
+                className="p-2 bg-white bg-opacity-20 hover:bg-[rgb(216,0,92)] transition-all duration-300"
                 aria-label="Email"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
