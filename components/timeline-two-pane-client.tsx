@@ -104,7 +104,7 @@ export default function TimelineTwoPaneClient({ itemsWithContent, useGallery = t
                 <img
                   src={item.coverImage}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-300"
                 />
                 {item.isFeatured && (
                   <div className="absolute top-3 right-3">
