@@ -54,27 +54,27 @@ const links = [
 
 export default function HomeLinktree() {
   return (
-    <section className="py-20 md:py-32 bg-white border-t border-gray-100">
+    <section className="py-24 md:py-40 bg-gray-900">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Find Me Online</h2>
-          <p className="text-xl text-gray-600">One place for all my links</p>
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">Find Me Online</h2>
+          <p className="text-2xl text-gray-300 font-semibold">One place for all my links</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`block p-4 md:p-6 rounded-xl text-white font-semibold transition-all transform hover:scale-102 ${link.color}`}
+              className={`block p-6 rounded-2xl text-white font-bold transition-all transform hover:scale-102 ${link.color}`}
             >
-              <div className="flex items-center gap-4">
-                <span className="text-4xl">{link.icon}</span>
+              <div className="flex items-center gap-6">
+                <span className="text-5xl flex-shrink-0">{link.icon}</span>
                 <div className="text-left">
-                  <p className="text-lg">{link.label}</p>
-                  <p className="text-sm opacity-90">{link.description}</p>
+                  <p className="text-xl font-bold">{link.label}</p>
+                  <p className="text-base opacity-90">{link.description}</p>
                 </div>
               </div>
             </a>
