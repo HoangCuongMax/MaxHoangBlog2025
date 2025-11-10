@@ -80,7 +80,7 @@ export default function TwoLevelNavigation() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block px-4 py-2 text-white hover:bg-white hover:bg-opacity-10 rounded-lg transition-colors"
+                    className="block px-4 py-3 text-white hover:bg-white hover:bg-opacity-10 rounded-lg transition-colors text-base font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
