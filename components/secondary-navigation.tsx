@@ -48,7 +48,6 @@ const socialLinks = [
 ]
 
 export default function SecondaryNavigation() {
-  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null)
 
   return (
     <nav
@@ -73,8 +72,6 @@ export default function SecondaryNavigation() {
               <li
                 key={item.href}
                 className="relative group"
-                onMouseEnter={() => setHoveredMenu(item.href)}
-                onMouseLeave={() => setHoveredMenu(null)}
               >
                 <Link
                   href={item.href}
