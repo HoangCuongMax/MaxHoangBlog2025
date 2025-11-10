@@ -55,7 +55,7 @@ export default function HomeHero() {
   ]
 
   return (
-    <section className="relative w-full h-screen flex items-center overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800">
+    <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800">
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-center px-4 sm:px-6 lg:px-12 py-12 md:py-0 h-full">
         {/* Left - Content (1/3) */}
         <div className="md:col-span-1 z-10">
