@@ -30,7 +30,7 @@ export default function TwoLevelNavigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-2xl font-bold text-white hover:text-gray-200 transition-colors"
+            className="text-3xl font-bold text-white hover:text-gray-200 transition-colors"
           >
             Max Hoang
           </Link>
@@ -41,7 +41,7 @@ export default function TwoLevelNavigation() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-white font-medium hover:text-gray-300 transition-colors text-sm"
+                  className="text-white font-semibold hover:text-gray-300 transition-colors text-lg"
                 >
                   {item.label}
                 </Link>
@@ -54,7 +54,7 @@ export default function TwoLevelNavigation() {
             href="https://www.linkedin.com/in/hoangngoccuong/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-block px-6 py-2 bg-[rgb(216,0,92)] text-white font-semibold hover:bg-[rgb(196,0,72)] transition-colors text-sm"
+            className="hidden sm:inline-block px-8 py-3 bg-[rgb(216,0,92)] text-white font-bold hover:bg-[rgb(196,0,72)] transition-colors text-lg"
           >
             LinkedIn
           </a>
@@ -92,7 +92,7 @@ export default function TwoLevelNavigation() {
                   href="https://www.linkedin.com/in/hoangngoccuong/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2 bg-[rgb(216,0,92)] text-white font-semibold hover:bg-[rgb(196,0,72)] rounded-lg transition-colors text-center"
+                  className="block px-6 py-3 bg-[rgb(216,0,92)] text-white font-bold hover:bg-[rgb(196,0,72)] rounded-lg transition-colors text-center text-lg"
                 >
                   Connect on LinkedIn
                 </a>
