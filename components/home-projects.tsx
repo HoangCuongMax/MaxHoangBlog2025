@@ -33,37 +33,37 @@ const projects = [
 
 export default function HomeProjects() {
   return (
-    <section className="py-20 md:py-32 bg-gray-50 border-t border-gray-100">
+    <section className="py-24 md:py-40 bg-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-          <p className="text-xl text-gray-600">AI, web, and innovation projects I've built</p>
+        <div className="mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Featured Projects</h2>
+          <p className="text-2xl text-gray-700 font-semibold">AI, web, and innovation projects I've built</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
           {projects.map((project) => (
             <div 
               key={project.id}
-              className="p-8 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-shadow"
+              className="p-10 bg-gray-50 rounded-2xl border-2 border-gray-200 hover:border-[rgb(216,0,92)] hover:shadow-xl transition-all"
             >
-              <div className="text-4xl mb-4">{project.icon}</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">{project.description}</p>
+              <div className="text-6xl mb-6">{project.icon}</div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">{project.title}</h3>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">{project.description}</p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-3 mb-8">
                 {project.tags.map((tag) => (
                   <span 
                     key={tag}
-                    className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full"
+                    className="inline-block px-4 py-2 bg-blue-100 text-blue-800 text-sm font-bold rounded-lg"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <button className="text-[rgb(216,0,92)] font-semibold hover:text-[rgb(196,0,72)] transition-colors">
+              <Link href="/projects" className="text-[rgb(216,0,92)] font-bold text-lg hover:text-[rgb(196,0,72)] transition-colors">
                 View Project →
-              </button>
+              </Link>
             </div>
           ))}
         </div>
@@ -71,7 +71,7 @@ export default function HomeProjects() {
         <div className="text-center">
           <Link
             href="/projects"
-            className="inline-block px-8 py-3 bg-[rgb(51,51,116)] text-white font-semibold hover:bg-[rgb(41,41,96)] transition-colors"
+            className="inline-block px-10 py-4 bg-[rgb(51,51,116)] text-white font-bold hover:bg-[rgb(41,41,96)] transition-colors text-lg"
           >
             View All Projects
           </Link>

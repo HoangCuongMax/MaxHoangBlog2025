@@ -15,19 +15,19 @@ const talks = [
 
 export default function HomeTalks() {
   return (
-    <section className="py-20 md:py-32 bg-white border-t border-gray-100">
+    <section className="py-24 md:py-40 bg-gray-900">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Talks & Presentations</h2>
-          <p className="text-xl text-gray-600 mb-2">I share ideas on how AI, creativity, and technology can empower everyday people.</p>
-          <p className="text-lg text-gray-500">Invited AI Speaker at RIMPA Annual Events & Startup September NT</p>
+        <div className="mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">Talks & Presentations</h2>
+          <p className="text-2xl text-gray-300 font-semibold mb-3">I share ideas on how AI, creativity, and technology can empower everyday people.</p>
+          <p className="text-xl text-gray-400">Invited AI Speaker at RIMPA Annual Events & Startup September NT</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           {talks.map((talk) => (
             <div key={talk.id} className="group">
               {/* Video Embed */}
-              <div className="relative w-full aspect-video mb-4 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow bg-black">
+              <div className="relative w-full aspect-video mb-6 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow bg-black border-2 border-white border-opacity-20">
                 <iframe
                   width="100%"
                   height="100%"
@@ -41,21 +41,21 @@ export default function HomeTalks() {
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-[rgb(216,0,92)] transition-colors">
+              <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-[rgb(216,0,92)] transition-colors">
                 {talk.title}
               </h3>
-              <p className="text-gray-600">{talk.description}</p>
+              <p className="text-lg text-gray-300">{talk.description}</p>
             </div>
           ))}
         </div>
 
-        <div className="text-center p-8 bg-blue-50 rounded-xl border border-blue-200">
-          <p className="text-lg text-gray-700 mb-4">
+        <div className="text-center p-12 bg-gradient-to-r from-[rgb(51,51,116)] to-[rgb(41,41,96)] rounded-2xl border border-white border-opacity-20">
+          <p className="text-2xl text-white mb-8 font-semibold">
             Want to work together on a speaking opportunity or collaboration?
           </p>
           <a
             href="mailto:hoangngoccuong1414@gmail.com"
-            className="inline-block px-8 py-3 bg-[rgb(51,51,116)] text-white font-semibold hover:bg-[rgb(41,41,96)] transition-colors"
+            className="inline-block px-10 py-4 bg-[rgb(216,0,92)] text-white font-bold hover:bg-[rgb(196,0,72)] transition-colors text-lg"
           >
             Get in Touch
           </a>
