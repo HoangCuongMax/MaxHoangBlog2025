@@ -36,7 +36,7 @@ export default function TwoLevelNavigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8 flex-1 ml-12">
+          <ul className="hidden md:flex items-center gap-10 flex-1 ml-16">
             {mainNavItems.map((item) => (
               <li key={item.href}>
                 <Link
