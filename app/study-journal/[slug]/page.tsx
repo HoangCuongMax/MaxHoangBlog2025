@@ -129,29 +129,29 @@ export default async function StudyJournalPostPage({ params }: StudyJournalPostP
                         </span>
                       </div>
                     )}
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                       {post.title}
                     </h1>
-                    <nav className="mb-3 text-sm text-gray-500">
-                      <Link href="/" className="hover:text-gray-700">Home</Link>
+                    <nav className="mb-3 text-sm text-gray-300">
+                      <Link href="/" className="hover:text-white transition-colors">Home</Link>
                       <span className="mx-2">/</span>
-                      <Link href="/study-journal" className="hover:text-gray-700">Study Journal</Link>
+                      <Link href="/study-journal" className="hover:text-white transition-colors">Study Journal</Link>
                       <span className="mx-2">/</span>
-                      <span className="text-gray-900">{post.title}</span>
+                      <span className="text-gray-100">{post.title}</span>
                     </nav>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-300 mb-6">
                       {post.publishedDate && (
                         <span>{formatDate(post.publishedDate)}</span>
                       )}
                       {post.category && (
-                        <span className="inline-block px-2.5 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">
+                        <span className="inline-block px-2.5 py-1 text-xs font-medium bg-blue-500/30 text-blue-200 rounded-full">
                           {post.category}
                         </span>
                       )}
                       {post.tags && post.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                           {post.tags.map((tag, index) => (
-                            <span key={index} className="text-gray-500">
+                            <span key={index} className="text-gray-300">
                               {tag}
                             </span>
                           ))}
