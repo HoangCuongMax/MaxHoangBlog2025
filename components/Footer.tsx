@@ -17,15 +17,40 @@ export default function Footer() {
             
             {/* Author Name & Title */}
             <h3 className="text-xl font-bold text-gray-900 mb-2">Max Hoang</h3>
-            <p className="text-gray-600 text-lg font-medium mb-3">AI Engineer & Full-Stack Developer</p>
-            
-            {/* Author Bio */}
-            <p className="text-gray-600 max-w-2xl text-center leading-relaxed">
-              Passionate about AI, web development, and creating innovative solutions.
-              I share insights on technology trends, development practices, and my journey in the tech industry.
-              Currently pursuing Master of Information Technology in Artificial Intelligence at Charles Darwin University.
+            <p className="text-gray-600 text-lg font-medium mb-4">Digital Creator | AI & Marketing | Healthy Living</p>
+
+            {/* Location & Languages */}
+            <p className="text-gray-600 text-sm mb-2">
+              📍 Darwin, NT, Australia | 🇻🇳 English & Vietnamese
+            </p>
+
+            {/* Website & Email */}
+            <p className="text-gray-600 text-sm mb-4">
+              🌐{' '}
+              <a href="https://maxhoang.com.au" className="text-blue-600 hover:underline">
+                maxhoang.com.au
+              </a>
+              {' '} | ✉️{' '}
+              <a href="mailto:hoangngoccuong1414@gmail.com" className="text-blue-600 hover:underline">
+                hoangngoccuong1414@gmail.com
+              </a>
+            </p>
+
+            {/* Quote */}
+            <p className="text-gray-600 italic max-w-2xl text-center leading-relaxed mb-4">
+              💡 "Learn. Build. Grow — one habit at a time."
             </p>
           </div>
+
+          {/* LinkedIn CTA Button */}
+          <a
+            href="https://www.linkedin.com/in/hoangngoccuong/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold mb-6"
+          >
+            Connect with me on LinkedIn
+          </a>
 
           {/* Social Media Icons */}
           <div className="flex justify-center items-center gap-6 mb-8">
