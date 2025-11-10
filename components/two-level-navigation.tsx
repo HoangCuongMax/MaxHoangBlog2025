@@ -5,8 +5,10 @@ import { useState } from 'react'
 
 const mainNavItems = [
   { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Talks', href: '/talks' },
+  { label: '100 Check List', href: '/projects' },
+  { label: 'Timeline', href: '/timeline' },
+  { label: 'Study Journal', href: '/study-journal' },
+  { label: 'AI Guide', href: '/blog/ai-guide' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ]
