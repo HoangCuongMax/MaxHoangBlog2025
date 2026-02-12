@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getBlogPosts } from '../../../lib/notion-api'
+import { NextResponse } from 'next/server'
 
 const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent'
 
@@ -37,25 +38,38 @@ export async function POST(req: Request) {
 
     const prompt = buildPrompt(kind, lines || 'No posts available.')
 
-    const response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.6, topK: 40, topP: 0.95 },
-      }),
-    })
-
-    if (!response.ok) {
-      const txt = await response.text()
-      return NextResponse.json({ error: 'Gemini request failed', details: txt }, { status: 502 })
+    let response
+    try {
+      response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.6, topK: 40, topP: 0.95 },
+        }),
+        // Prevent long hanging requests
+        // Note: Next fetch in server environment will time out based on platform
+      })
+    } catch (fetchErr: any) {
+      console.error('Error calling Gemini API:', fetchErr)
+      return NextResponse.json({ error: 'Failed to contact Gemini API', details: fetchErr?.message || String(fetchErr) }, { status: 502 })
     }
 
-    const data = await response.json()
-    const text = data?.candidates?.[0]?.content?.parts?.map((p: any) => p?.text).filter(Boolean).join('\n') || ''
+    try {
+      if (!response.ok) {
+        const txt = await response.text().catch(() => '')
+        return NextResponse.json({ error: 'Gemini request failed', details: txt }, { status: 502 })
+      }
 
-    return NextResponse.json({ result: text })
+      const data = await response.json()
+      const text = data?.candidates?.[0]?.content?.parts?.map((p: any) => p?.text).filter(Boolean).join('\n') || ''
+      return NextResponse.json({ result: text })
+    } catch (parseErr: any) {
+      console.error('Error parsing Gemini response:', parseErr)
+      return NextResponse.json({ error: 'Failed to parse Gemini response', details: parseErr?.message || String(parseErr) }, { status: 502 })
+    }
   } catch (e) {
+    console.error('Unexpected error in gemini route:', e)
     return NextResponse.json({ error: 'Unexpected error' }, { status: 500 })
   }
 }

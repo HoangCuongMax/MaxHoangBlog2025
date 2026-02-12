@@ -14,6 +14,15 @@ body {
   @apply w-full max-w-none;
 }
 
+/* Book layout (AI Guide) */
+.book-layout .content-article {
+  max-width: 800px;
+}
+.book-layout .toc a.active {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
 /* Ensure content body matches cover photo width */
 .notion-content {
   @apply w-full;
@@ -58,20 +67,24 @@ body {
 
 .notion-text {
   @apply text-gray-700 leading-relaxed;
-  font-size: 16px !important;
-  line-height: 1.7 !important;
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+  padding: 3px 0 3px 2px !important;
 }
 
 .notion-h1 {
   @apply text-3xl font-bold text-gray-900 mt-12 mb-6;
+  scroll-margin-top: 6rem;
 }
 
 .notion-h2 {
   @apply text-2xl font-semibold text-gray-800 mt-10 mb-4;
+  scroll-margin-top: 6rem;
 }
 
 .notion-h3 {
   @apply text-xl font-semibold text-gray-800 mt-8 mb-3;
+  scroll-margin-top: 6rem;
 }
 
 .notion-list {
@@ -96,7 +109,7 @@ body {
 
 /* Custom button styles */
 .notion-link {
-  @apply text-blue-600 hover:text-blue-800 underline underline-offset-2;
+  @apply text-blue-800 underline underline-offset-2 hover:text-blue-900;
 }
 
 /* Image styles */
@@ -165,14 +178,13 @@ body {
 }
 
 .notion-page-container a {
-  color: #3182ce;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+  color: #1e3a8a; /* tailwind blue-900-ish */
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .notion-page-container a:hover {
-  border-bottom-color: #3182ce;
+  color: #1e40af; /* blue-800 */
 }
 
 /* Mobile responsiveness */
@@ -254,7 +266,7 @@ body {
 }
 
 .prose a {
-  color: #2563eb;
+  color: #1e3a8a;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -703,6 +715,17 @@ main {
   .notion-table-of-contents {
     display: none !important;
   }
+}
+
+/* When using the book-layout with our own sidebar, collapse Notion's left column and spacer */
+.book-layout .notion-row > .notion-column:first-child {
+  display: none !important;
+}
+.book-layout .notion-row > .notion-spacer {
+  display: none !important;
+}
+.book-layout .notion-row > .notion-column:last-child {
+  width: 100% !important;
 }
 
 /* Mobile responsive */

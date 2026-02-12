@@ -1,22 +1,56 @@
 import { getPageByKeyWithMetadata } from '../../lib/notion-api'
-import NotionPage from '../../components/notion-page'
+import dynamicImport from 'next/dynamic'
+const NotionPage = dynamicImport(() => import('../../components/notion-page'), { ssr: false })
 import PageContainer from '../../components/page-container'
 import ErrorFallback from '../../components/error-fallback'
 import NotionLinkInterceptor from '../../components/notion-link-interceptor'
 import PageCoverHeader from '../../components/page-cover-header'
+import AiGuideToc from '../../components/ai-guide-toc'
 import { Metadata } from 'next'
+
+export const dynamic = 'force-dynamic'
+
+function extractHeadings(recordMap: any): Array<{ id: string; text: string; level: number }> {
+  const out: Array<{ id: string; text: string; level: number }> = []
+  try {
+    const blocks = recordMap?.block || {}
+    for (const id of Object.keys(blocks)) {
+      const value = (blocks as any)[id]?.value || (blocks as any)[id]
+      if (!value) continue
+      const type = value.type
+      let level = 0
+      if (type === 'header') level = 1
+      else if (type === 'sub_header') level = 2
+      else if (type === 'sub_sub_header') level = 3
+      else continue
+      const titleArr = value?.properties?.title || []
+      const text = Array.isArray(titleArr) ? titleArr.map((t: any) => (Array.isArray(t) ? t[0] : '')).join('') : ''
+      if (text) out.push({ id, text, level })
+    }
+  } catch {}
+  return out
+}
 
 export default async function Projects() {
   try {
     const { recordMap, metadata } = await getPageByKeyWithMetadata('projects')
+    const headings = extractHeadings(recordMap)
 
     return (
       <>
         <PageCoverHeader metadata={metadata} />
 
-        <PageContainer noBoxStyling={true}>
-          <NotionPage recordMap={recordMap} />
-          <NotionLinkInterceptor />
+        <PageContainer noBoxStyling={true} maxWidthClass="max-w-none">
+          <div className="book-layout relative">
+            <aside className="hidden md:block fixed left-0 top-0 h-screen w-[300px] overflow-y-auto bg-white border-r border-gray-200 z-40">
+              <AiGuideToc headings={headings} bare />
+            </aside>
+
+            <article className="min-w-0 content-article mx-auto md:pl-[320px] pr-6">
+              <NotionPage recordMap={recordMap} />
+              <NotionLinkInterceptor />
+            </article>
+          </div>
         </PageContainer>
       </>
     )

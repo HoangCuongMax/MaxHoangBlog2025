@@ -67,7 +67,7 @@ export default function TimelineClient({ itemsWithContent }: TimelineClientProps
       {filteredItems.length > 0 ? (
         <div className="timeline-masonry">
           {filteredItems.map((item, index) => (
-            <div key={item.id} className="timeline-masonry-item">
+            <div id={item.id} key={item.id} className="timeline-masonry-item scroll-mt-24">
               <TimelineCardServer item={item} index={index} />
             </div>
           ))}

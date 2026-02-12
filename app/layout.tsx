@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import Navigation from '../components/navigation'
-import Footer from '../components/Footer'
+import Footer from '../components/footer'
 import ContactPopup from '../components/contact-popup'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // Force dynamic rendering for the entire application
 export const dynamic = 'force-dynamic'
@@ -90,6 +91,7 @@ export default function RootLayout({
         </main>
         {Footer ? <Footer /> : (console.error('Footer component is undefined'), null)}
         {ContactPopup ? <ContactPopup /> : (console.error('ContactPopup component is undefined'), null)}
+        <SpeedInsights />
       </body>
     </html>
   )

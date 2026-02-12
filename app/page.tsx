@@ -1,12 +1,14 @@
 import { getPageByKeyWithMetadata } from '../lib/notion-api'
-import dynamic from 'next/dynamic'
-const NotionPage = dynamic(() => import('../components/notion-page'), { ssr: false })
+import dynamicImport from 'next/dynamic'
+const NotionPage = dynamicImport(() => import('../components/notion-page'), { ssr: false })
 import PageContainer from '../components/page-container'
 import ErrorFallback from '../components/error-fallback'
-const NotionLinkInterceptor = dynamic(() => import('../components/notion-link-interceptor'), { ssr: false })
+const NotionLinkInterceptor = dynamicImport(() => import('../components/notion-link-interceptor'), { ssr: false })
 import PageCoverHeader from '../components/page-cover-header'
 import ProfileLinktree from '../components/profile-linktree'
 import { Metadata } from 'next'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   try {
@@ -18,7 +20,7 @@ export default async function Home() {
         <div className="mt-4 sm:mt-6 md:mt-8">
           <ProfileLinktree />
         </div>
-        <PageContainer noBoxStyling={true}>
+        <PageContainer noBoxStyling={true} maxWidthClass="max-w-4xl">
           <NotionPage recordMap={recordMap} />
           <NotionLinkInterceptor />
         </PageContainer>

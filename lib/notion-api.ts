@@ -3,26 +3,41 @@ import { NotionAPI } from 'notion-client'
 import { generateSlug } from './seo-utils'
 
 // Initialize the official Notion API client with your token
+const hasOfficialToken = Boolean(process.env.NOTION_TOKEN && process.env.NOTION_TOKEN.startsWith('secret_'))
+if (!hasOfficialToken) {
+  console.warn('NOTION_TOKEN missing or not an integration token (expected to start with "secret_"). Official Notion API calls will be skipped.')
+}
 const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
+  auth: hasOfficialToken ? process.env.NOTION_TOKEN : undefined,
 })
 
-// Keep the unofficial client for page rendering only
-const notionUnofficial = new NotionAPI()
+// Keep the unofficial client for page rendering only (optionally with auth for private pages)
+const notionUnofficial = new NotionAPI({
+  authToken: process.env.NOTION_AUTH_TOKEN || undefined,
+  activeUser: process.env.NOTION_ACTIVE_USER || undefined,
+})
 
-// Page IDs extracted from the URLs
-export const PAGE_IDS = {
-  home: '23f792d80ba380189a58c946bdcad944',
-  projects: '23f792d80ba380a2a8ddd56aee32216a',
-  contact: '237792d80ba38002b795d261ca17b305'
+// Helper to allow overriding IDs via environment variables
+const envOr = (key: string, fallback: string) => {
+  const v = process.env[key]
+  return v && v.trim().length > 0 ? v : fallback
 }
 
-// Database IDs (cleaned format without dashes)
+// Page IDs extracted from the URLs (overridable via env)
+export const PAGE_IDS = {
+  home: envOr('NOTION_PAGE_HOME', '23f792d80ba380189a58c946bdcad944'),
+  projects: envOr('NOTION_PAGE_PROJECTS', '23f792d80ba380a2a8ddd56aee32216a'),
+  contact: envOr('NOTION_PAGE_CONTACT', '237792d80ba38002b795d261ca17b305'),
+  aiGuide: envOr('NOTION_PAGE_AI_GUIDE', '27a792d80ba38094ae60c555dd2f4c1e'),
+  dailyJournal: envOr('NOTION_PAGE_DAILY_JOURNAL', '27c792d80ba380d0b6c6d79cb8a235a5')
+}
+
+// Database IDs (overridable via env)
 export const DATABASE_IDS = {
-  blog: '237792d80ba38063ac29cc15fe37ffbb',
-  timeline: '22b792d80ba3808db9e9c129d735ef7b',
-  studyJournal: '250792d80ba380aa81c7d0b21421c830', // New Study Journal database
-  events: '252792d80ba38097a898f3d9cae0ad95' // Events List database
+  blog: envOr('NOTION_DB_BLOG', '237792d80ba38063ac29cc15fe37ffbb'),
+  timeline: envOr('NOTION_DB_TIMELINE', '22b792d80ba3808db9e9c129d735ef7b'),
+  studyJournal: envOr('NOTION_DB_STUDY_JOURNAL', '250792d80ba380aa81c7d0b21421c830'),
+  events: envOr('NOTION_DB_EVENTS', '252792d80ba38097a898f3d9cae0ad95')
 }
 
 // Blog post interface
@@ -100,6 +115,7 @@ export interface Event {
 // Function to get blog posts using official Notion API
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.blog
 
     const response = await notion.databases.query({
@@ -220,54 +236,61 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 // Function to get timeline items using official Notion API
 export async function getTimelineItems(): Promise<TimelineItem[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.timeline
 
-    const response = await notion.databases.query({
-      database_id: databaseId,
-      sorts: [
-        {
-          property: 'Date',
-          direction: 'descending'
-        }
-      ]
-    })
+    let response
+    try {
+      response = await notion.databases.query({
+        database_id: databaseId,
+        sorts: [
+          {
+            property: 'Date',
+            direction: 'descending'
+          }
+        ]
+      })
+    } catch (e) {
+      // Fallback if 'Date' property doesn't exist or sort fails
+      response = await notion.databases.query({ database_id: databaseId })
+    }
 
     const items: TimelineItem[] = []
 
     for (const page of response.results) {
       if ('properties' in page) {
-        // Extract title
+        // Extract title (find any title prop)
         let title = 'Untitled'
-        const titleProp = page.properties.Title
-        if (titleProp && titleProp.type === 'title' && titleProp.title.length > 0) {
+        const titleProp = Object.values(page.properties).find((p: any) => p?.type === 'title') as any
+        if (titleProp?.title?.length) {
           title = titleProp.title.map((t: any) => t.plain_text).join('')
         }
 
-        // Extract description
+        // Extract description (first rich_text)
         let description = ''
-        const descProp = page.properties.Description
-        if (descProp && descProp.type === 'rich_text' && descProp.rich_text.length > 0) {
+        const descProp = Object.values(page.properties).find((p: any) => p?.type === 'rich_text') as any
+        if (descProp?.rich_text?.length) {
           description = descProp.rich_text.map((t: any) => t.plain_text).join('')
         }
 
-        // Extract date
+        // Extract date (first date prop)
         let date = ''
-        const dateProp = page.properties.Date
-        if (dateProp && dateProp.type === 'date' && dateProp.date) {
+        const dateProp = Object.values(page.properties).find((p: any) => p?.type === 'date' && p?.date) as any
+        if (dateProp?.date) {
           date = dateProp.date.start
         }
 
-        // Extract category
+        // Extract category (first select)
         let category = ''
-        const categoryProp = page.properties.Category
-        if (categoryProp && categoryProp.type === 'select' && categoryProp.select && 'name' in categoryProp.select) {
+        const categoryProp = Object.values(page.properties).find((p: any) => p?.type === 'select' && p?.select) as any
+        if (categoryProp?.select?.name) {
           category = categoryProp.select.name
         }
 
-        // Extract tags
+        // Extract tags (first multi_select)
         let tags: string[] = []
-        const tagsProp = page.properties.Tags
-        if (tagsProp && tagsProp.type === 'multi_select' && Array.isArray(tagsProp.multi_select)) {
+        const tagsProp = Object.values(page.properties).find((p: any) => p?.type === 'multi_select' && Array.isArray(p?.multi_select)) as any
+        if (tagsProp?.multi_select) {
           tags = tagsProp.multi_select.map((tag: any) => tag.name)
         }
 
@@ -386,6 +409,7 @@ export async function getFirstImageUrlFromPage(pageId: string): Promise<string |
 // Function to get study journal posts using official Notion API
 export async function getStudyJournalPosts(): Promise<StudyJournalPost[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.studyJournal
 
     const response = await notion.databases.query({
@@ -528,6 +552,7 @@ export interface PageMetadata {
 // Function to get page metadata (title, icon, cover) using official API
 export async function getPageMetadata(pageId: string): Promise<PageMetadata | null> {
   try {
+    if (!hasOfficialToken) return null
     const response = await notion.pages.retrieve({ page_id: pageId })
 
     if (!('properties' in response)) {
@@ -596,6 +621,7 @@ export async function getPageByKeyWithMetadata(key: keyof typeof PAGE_IDS) {
 // Function to get events using official Notion API
 export async function getEvents(): Promise<Event[]> {
   try {
+    if (!hasOfficialToken) return []
     const databaseId = DATABASE_IDS.events
 
     const response = await notion.databases.query({

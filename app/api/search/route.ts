@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getBlogPosts, getStudyJournalPosts, getTimelineItems } from '../../../lib/notion-api'
+import { NextResponse } from 'next/server'
 
 export async function GET(req: Request) {
   try {
